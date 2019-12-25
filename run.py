@@ -5,17 +5,15 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
+app.config["MONGO_URI"] = os.getenv("MONGO_URI_BAKING_HOT")
+app.config["MONGO_DBNAME"] = "baking_hot"
+
+mongo = PyMongo(app)
+
 @app.route('/')
-def index():
-    return render_template("index.html")
-
-@app.route('/whitebreadrecipes')
-def whitebreadrecipes():
-    return render_template("whitebreadrecipes.html")
-
-@app.route('/wholemealrecipes')
-def wholemealrecipes():
-    return render_template("wholemealrecipes.html")
+@app.route('/list_recipes')
+def list_recipes():
+    return render_template("list_recipes.html", recipes=list(mongo.db.recipes.find()))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
