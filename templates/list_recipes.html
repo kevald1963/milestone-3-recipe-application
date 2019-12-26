@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h4>Recipe List</h4>
     <ul class="collapsible" data-collapsible="accordion">
         {% for recipe in recipes %}
         <li>
@@ -10,11 +9,14 @@
                     <i class="material-icons">expand_more</i>
                 </div>
                 <div class="task_header col s9">
-                    {{recipe.recipe_title}}
+                    <span>Type: {{recipe.type}} - <strong>{{recipe.title}}</strong></span>
                 </div>
             </div>
             <div class="collapsible-body">
-                <span>{{recipe.posted_by}} on {{recipe.date_posted}}</span>
+                <p>
+                   {{recipe.description}}
+                </p>
+                <span>Posted by {{recipe.posted_by}} on {{recipe.date_posted}}</span>
             </div>
         </li>
         {% endfor %}
