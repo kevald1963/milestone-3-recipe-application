@@ -1,6 +1,6 @@
-# Baking Hot! A website application for view and share baking recipes.
+# Baking Hot! A website application for viewing and sharing baking recipes.
 
-Strapline: “Baking Hot! The No. 1 spot for all your baking recipes.”
+Company strapline: “Baking Hot! The No. 1 Spot For All Your Baking Recipes!”
 
 For the site owners, the purpose of this website application is to earn revenue by advertising other company’s products such as baking ingredients and kitchen equipment.
  
