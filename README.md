@@ -16,7 +16,8 @@ The app is aimed at users, from beginners to advanced, who want to make a variet
 
 ### User Stories
 
-Initially, the site will have two types of User - Basic and Admin. However, other types of users, e.g. Trusted User, may be created in the future, so the facility to create new ones will be included in the application. This will initially be a manual process performed, rather than by external users creating their own login details via the application front-end, which is beyond the scope of this project. Only Admin Users will have the required permissions to create other types of users.
+Initially, the site will have two types of User: Basic and Admin. It would be desirable to create other types of users, e.g. Trusted User, but the facility to do this will not be included in this phase. However, a Users collection will be included in the database. User records already in this collection imply a login facility exists and such users are have already been created through a registration process.
+
 
 User permissions:
 
