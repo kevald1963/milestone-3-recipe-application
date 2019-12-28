@@ -71,14 +71,16 @@ I want to
 
 The files below are stored in the [_Project Documentation](https://github.com/kevald1963/milestone-3-recipe-application/tree/master/_Project%20Documentation) folder in GitHub.
 
-- Home page, narrow screen.jpg
-- Home page, wide screen.jpg
+- [Home page, narrow screen, Section 1.pdf](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Home%20page%2C%20narrow%20screen%2C%20Section%201.pdf)
+- [Home page, narrow screen, Section 2.pdf](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Home%20page%2C%20narrow%20screen%2C%20Section%202.pdf)
+- [Recipes page, narrow screen.pdf](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Recipes%20page,%20narrow%20screen.pdf)
+- [Add Recipes page, narrow screen.pdf](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Add%20Recipes%20page,%20narrow%20screen.pdf)
 
 ### Database structure
 
 The MongoDB document database will be used by this site for all data storage. Collections and related fields, identified for this phase are shown in the Excel spreadsheet below, stored in the [_Project Documentation](https://github.com/kevald1963/milestone-3-recipe-application/tree/master/_Project%20Documentation) folder in GitHub.
 
-- Database collections - Baking Hot.xlsx
+- [Database collections - Baking Hot.xlsx](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Database%20collections%20-%20Baking%20Hot.xlsx)
 
 ## Features
 
