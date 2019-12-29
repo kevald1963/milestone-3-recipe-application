@@ -11,6 +11,13 @@ app.config["MONGO_DBNAME"] = "baking_hot"
 mongo = PyMongo(app)
 
 @app.route('/')
+def index():
+
+#    return render_template("index.html", recipe=mongo.db.recipes.find_one())
+    return render_template("index.html", recipe=mongo.db.recipes.find_one({'popular_recipe': True}))
+
+#    return render_template("index.html", recipe=mongo.db.recipes.find_one({'type': 'Bread'}))
+
 @app.route('/list_recipes')
 def list_recipes():
     return render_template("recipes_list.html", recipes=list(mongo.db.recipes.find()))

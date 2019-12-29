@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="row">
     <ul class="collapsible" data-collapsible="accordion">
         {% for recipe in recipes %}
         <li>
@@ -21,5 +22,6 @@
         </li>
         {% endfor %}
     </ul>
+</div>
 
 {% endblock %}
