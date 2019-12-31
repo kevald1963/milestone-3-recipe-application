@@ -1,62 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<p>popular_recipe: {{ recipe.popular_recipe }}</p> 
-
 <div class="row">
 	<div class="col s12">
 		<h3>Recipe of the Day - {{ recipe.title }}</h3>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12">
 		<p>{{ recipe.description }}</p>
 	</div>
 </div>
 
-<p>{{ recipe.image_source }}</p>
-
 <div class="row">
 	<div class="col s6">
         <img src="{{ recipe.image_source }}" alt="Traditional White Loaf">
-        <img src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/recipes/DF%20Bread/600_Doves_TraditionalWholemealBreadNEW.jpg" alt=""/>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col s12">
 		<h3>Ingredients</h3>
-		<p>{{ recipe.ingredients[0] }}</p>
-		<p>{{ recipe.ingredients[1] }}</p>
+        {% for ingredient in recipe.ingredients %}
+		    <p>{{ ingredient }}</p>
+        {% endfor %}   
 	</div>
 </div>
 
 <div class="row">
 	<div class="col s12">
 		<h3>Method</h3>
-		<p>Method 1 to go here</p>
-		<p>Method 2 to go here</p>
+        {% for method_item in recipe.method %}
+		    <p>{{ method_item }}</p>
+        {% endfor %}   
 	</div>
 </div>
 
 <div class="row">
 	<div class="col s12">
 		<h3>Equipment</h3>
-		<p>Equipment 1 to go here</p>
-		<p>Equipment 2 to go here</p>
+        {% for equipment_item in recipe.equipment %}
+		    <p>{{ equipment_item }}</p>
+        {% endfor %}
 	</div>
 </div>
 
 <div class="row">
-	<div class="col s12" class="sponsored-link">
-		<p>Need some equipment? Check out these cool tools!</p>
-        <div class="sponsored-image">
-            <span>
-            <a href=""><img src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" max-width="100px" max-height="100px" alt=""></a>
-            <a href=""><img src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" max-width="100px" max-height="100px" alt=""></a>
-            
-            </span>
+	<div class="col s12">
+		<p>Need some baking equipment? Check out these cool tools!</p>
+        <div class="sponsored-image-group">
+            <a href=""><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt=""></a>
+            <a href=""><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" alt=""></a>
+            <a href=""><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/s/i/side_shot_1lb_tin__4.jpg" alt=""></a>
         </div>
 	</div>
 </div>
@@ -82,19 +73,23 @@
 
 <div class="row">
 	<div class="col s12">
-    	<p>Posted by: {{ recipe.posted_by }} on {{ recipe.date_posted }}</p>
+    	<p><em>Recipe posted by: {{ recipe.posted_by }} on {{ recipe.date_posted }}</em></p>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col s12">
 		<h3>Reviews</h3>
-		<p>Review 1 to go here</p>
-		<p>Review 2 to go here</p>
+        {% for review in recipe.reviews %}
+            {% if review.review_text is not defined %}
+                <p><em>No reviews for this recipe yet. Would you like to be the first to review it?</em></p>
+            {% else %}
+		        <p>{{ review.review_text }}</p>
+		        <p><em>Review posted by {{ review.reviewed_by }} on {{ review.review_date }}</em></p>
+            {% endif %}    
+		{% endfor %}
 	</div>
 </div>
-
-
 
 {% endblock %}
 
