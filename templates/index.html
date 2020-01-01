@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+
+{% block content_home %}
+<h4>
+    We have got recipes for all sorts of baked goods here - bread, scones, cakes, savoury pies, 
+    fruit tarts...even Yorkshire pudding. Check out our recipes and get baking!</p>
+</h4>
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
@@ -73,7 +81,7 @@
 
 <div class="row">
 	<div class="col s12">
-    	<p><em>Recipe posted by: {{ recipe.posted_by }} on {{ recipe.date_posted }}</em></p>
+    	<p><strong><em>Recipe posted by:</strong> {{ recipe.posted_by }} on {{ recipe.date_posted }}</em></p>
 	</div>
 </div>
 
@@ -85,7 +93,7 @@
                 <p><em>No reviews for this recipe yet. Would you like to be the first to review it?</em></p>
             {% else %}
 		        <p>{{ review.review_text }}</p>
-		        <p><em>Review posted by {{ review.reviewed_by }} on {{ review.review_date }}</em></p>
+		        <p><strong><em>Review posted by:</strong> {{ review.reviewed_by }} on {{ review.review_date }}</em></p>
             {% endif %}    
 		{% endfor %}
 	</div>

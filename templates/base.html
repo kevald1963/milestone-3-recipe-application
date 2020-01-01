@@ -20,14 +20,24 @@
         <div class="row">
             <div class="col s12"></div>
                 <h2>Baking Hot! The No. 1 Spot For All Your Baking Recipes!</h2>
-                <h4>
-                    We have got recipes for all sorts of baked goods here - bread, scones, cakes, savoury pies, 
-                    fruit tarts...even Yorkshire pudding! Check out our recipes and get baking!</p>
-                </h4>
+                <!-- Home page content only here. -->
+                {% block content_home %}
+                {% endblock %}
             </div>
         </div>
     </header>
     <!-- /.HEADER --> 
+
+    <!-- NAVBAR --> 
+    <nav class="container-fluid">
+        <div class="row">
+            <div class="col s12"></div>
+                <a href="{{ url_for('home') }}">[ Home ]</a>
+                <a href="{{ url_for('recipes') }}">[ Recipes ]</a>
+            </div>
+        </div>
+    </nav>
+    <!-- /.NAVBAR --> 
 
     <!-- MAIN -->
     <main class="container-fluid">
