@@ -4,6 +4,7 @@
 <h4>Add a recipe</h4>
 <div class="row">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+
         <!-- RECIPE TYPE -->
         <div class="row">
             <div class="input-field col s12">
@@ -26,35 +27,53 @@
                 <label for="icon_prefix">Recipe title</label>
             </div>
         </div>
-        
+
         <!-- RECIPE DESCRIPTION -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">subject</i>
                 <textarea id="recipe_description" name="recipe_description" class="materialize-textarea"></textarea>
-                <label for="icon_telephone">Recipe description</label>
+                <label for="icon_prefix">Recipe description</label>
             </div>
         </div>
 
+<!-- START HERE! Input sort of works. Can add and remove fields. Needs formatting properly. -->
         <!-- INGREDIENTS -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">subject</i>
+                <div class="input_fields_wrap">
+                    <input type="text" name="answer[]" class="field-long"/>
+                    <input type="text" name="answer[]" class="field-long" />
+                </div>        
+                <label for="icon_telephone">Ingredients</label>
+            </div>        
+            <div class="col s6">
+                <button type="button" class="add_field_button">Add Field</button>
+                <button type="button" class="remove_field_button">Remove Field</button>
+            </div>        
+        </div>        
+
+<!--
+        <div class="row">
+            <div class="input-field col s6">
                 <i class="material-icons prefix">assignment</i>
                 <input id="ingredients" name="ingredients" type="text" class="validate">
-                <label for="icon_prefix">Ingredients</label>
-            </div>
+                <label for="icon_telephone">Ingredients</label>
+            </div>    
         </div>
+-->
 
         <!-- METHOD -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
                 <input id="method" name="method" type="text" class="validate">
-                <label for="icon_prefix">Method</label>
+                <label for="icon_telephone">Method</label>
             </div>
         </div>
 
-        <!-- Temperature -->
+        <!-- TEMPERATURE -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
@@ -62,7 +81,7 @@
                 <input id="celsius-fan" name="celsius-fan" type="text" class="validate">
                 <input id="fahrenheit" name="fahrenheit" type="text" class="validate">
                 <input id="gas-mark" name="gas-mark" type="text" class="validate">
-                <label for="icon_prefix">Temperature</label>
+                <label for="icon_telephone">Temperature</label>
             </div>
         </div>
 
