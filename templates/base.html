@@ -26,7 +26,6 @@
             </div>
         </div>
     </header>
-    <!-- /.HEADER --> 
 
     <!-- NAVBAR --> 
     <nav class="container-fluid">
@@ -37,19 +36,24 @@
             </div>
         </div>
     </nav>
-    <!-- /.NAVBAR --> 
 
     <!-- MAIN -->
     <main class="container-fluid">
         {% block content %}
         {% endblock %}
     </main>
-    <!-- /.MAIN -->
 
-    <!-- JavaScript -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
+    <script> 
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+            $('select').material_select();
+            $(".button-collapse").sideNav();
+        });
+    </script>
 
 </body>
 

@@ -19,6 +19,20 @@ def home():
 def recipes():
     return render_template("recipes.html", recipes=list(mongo.db.recipes.find()))
 
+@app.route('/add_recipe')
+def add_recipe():
+    return render_template("add_recipe.html", recipe_types=list(mongo.db.recipe_types.find()))
+
+@app.route('/insert_recipe', methods=["POST"])
+def insert_recipe():
+    recipes = mongo.db.recipes
+    # Convert form data to a dictionary to make it usable by Mongo.
+    recipes.insert_one(request.form.to_dict())
+    #return redirect(gitpod_url + 'recipes')
+    return redirect(url_for('recipes'))
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=os.environ.get('PORT'),
