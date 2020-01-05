@@ -66,7 +66,7 @@
                 e.preventDefault();
                 var total_fields = wrapper[0].childNodes.length;
                 if(total_fields < max_fields) {
-                    $(wrapper).append('<input type="text" name="answer[]" class="field-long"/>');
+                    $(wrapper).append('<input name="ingredients[]" type="text" class="field-long" value=""/>');
                 }
             });
 
