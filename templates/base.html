@@ -43,7 +43,6 @@
         {% endblock %}
     </main>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
@@ -57,24 +56,43 @@
 
     <script>
         $(document).ready(function() {
-            var max_fields      = 10;
-            var wrapper         = $(".input_fields_wrap"); 
-            var add_button      = $(".add_field_button");
-            var remove_button   = $(".remove_field_button");
+            var max_fields                = 12;
+            var wrapper_ingredients       = $(".input_fields_wrap_ingredients"); 
+            var wrapper_method            = $(".input_fields_wrap_method"); 
+            var add_button_ingredients    = $(".add_field_button_ingredients");
+            var add_button_method         = $(".add_field_button_method");
+            var remove_button_ingredients = $(".remove_field_button_ingredients");
+            var remove_button_method      = $(".remove_field_button_method");
 
-            $(add_button).click(function(e) {
+            $(add_button_ingredients).click(function(e) {
                 e.preventDefault();
-                var total_fields = wrapper[0].childNodes.length;
-                if(total_fields < max_fields) {
-                    $(wrapper).append('<input name="ingredients[]" type="text" class="field-long" value=""/>');
+                var total_fields_ingredients = wrapper_ingredients[0].childNodes.length;
+                if(total_fields_ingredients < max_fields) {
+                    $(wrapper_ingredients).append('<input name="ingredients[]" type="text" class="field-long"/>');
                 }
             });
 
-            $(remove_button).click(function(e) {
+            $(remove_button_ingredients).click(function(e) {
                 e.preventDefault();
-                var total_fields = wrapper[0].childNodes.length;
-                if(total_fields>1) {
-                    wrapper[0].childNodes[total_fields-1].remove();
+                var total_fields_ingredients = wrapper_ingredients[0].childNodes.length;
+                if(total_fields_ingredients > 1) {
+                    wrapper_ingredients[0].childNodes[total_fields_ingredients - 1].remove();
+                }
+            });
+
+            $(add_button_method).click(function(e) {
+                e.preventDefault();
+                var total_fields_method = wrapper_method[0].childNodes.length;
+                if(total_fields_method < max_fields) {
+                    $(wrapper_method).append('<input name="method[]" type="text" class="field-long"/>');
+                }
+            });
+
+            $(remove_button_method).click(function(e) {
+                e.preventDefault();
+                var total_fields_method = wrapper_method[0].childNodes.length;
+                if(total_fields_method > 1) {
+                    wrapper_method[0].childNodes[total_fields_method - 1].remove();
                 }
             });
         });

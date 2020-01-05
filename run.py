@@ -28,15 +28,20 @@ def add_recipe():
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
     recipes = mongo.db.recipes
-    ingredients = request.form.to_dict["ingredients"]
-    print("Ingredients: " + ingredients)
+    
+    # Multi-line elements need converted to a list before saving to MongoDB.
+    ingredients = request.form.getlist("ingredients[]")
+    method = request.form.getlist("method[]")
+
+    # print("Ingredients: " + str(ingredients))
     data = request.form.to_dict() 
     recipes.insert_one(
         {
             "category": data["category_name"],
             "title": data["title"],
             "description": data["description"],
-            "ingredients": ingredients
+            "ingredients": ingredients,
+            "method": method
         }
     )    
     return redirect(gitpod_url + 'add_recipe')
