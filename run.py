@@ -41,7 +41,8 @@ def insert_recipe():
             "title": data["title"],
             "description": data["description"],
             "ingredients": ingredients,
-            "method": method
+            "method": method,
+            "temperature": temperature
         }
     )    
     return redirect(gitpod_url + 'add_recipe')
