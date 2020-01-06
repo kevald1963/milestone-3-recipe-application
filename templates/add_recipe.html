@@ -75,15 +75,42 @@
 
         <!-- TEMPERATURE -->
         <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
-                <input id="celsius" name="celsius" type="text" class="validate">
-                <input id="celsius-fan" name="celsius-fan" type="text" class="validate">
-                <input id="fahrenheit" name="fahrenheit" type="text" class="validate">
-                <input id="gas-mark" name="gas-mark" type="text" class="validate">
-                <label for="icon_telephone">Temperature</label>
+            <div class="input-field col s4">
+                <i class="material-icons prefix">wb_sunny</i>
+                <label for="icon_telephone">Temperature:</label>
+                <br>
             </div>
         </div>
+        <div class="row">
+            <div class="col s4 offset-s1">
+                <p>Please enter an oven temperature value and setting.</p>        
+                    <div class="col s1">
+                        <input name="temperature-value" id="temperature-value" type="text" class="validate">
+                    </div>        
+                    <div class="col s10">
+                        <input class="with-gap" name="temperature" id="celsius" type="radio"/>
+                        <label for="celsius">°C</label>
+                        <input class="with-gap" name="temperature" id="celsius-fan" type="radio"/>
+                        <label for="celsius-fan">°C (fan)</label>
+                        <input class="with-gap" name="temperature" id="fahrenheit" type="radio"/>
+                        <label for="fahrenheit">°F</label>
+                        <input class="with-gap" name="temperature" id="gas-mark" type="radio"/>
+                        <label for="gas-mark">Gas Mark</label>
+                    </div>        
+                </p>
+            </div>
+        </div>
+<!--
+                        <span>
+                            Electric oven: <input id="celsius" name="celsius" type="text" class="validate"> °C
+                        </span>
+
+                    <input id="celsius" name="celsius" type="radio" class="validate"> Normal oven
+                    <input id="celsius" name="celsius" type="text" class="validate"> ° C
+                <input id="celsius-fan" name="celsius-fan" type="radio" class="validate">
+                <input id="fahrenheit" name="fahrenheit" type="radio" class="validate">
+                <input id="gas-mark" name="gas-mark" type="radio" class="validate">
+-->
 
         <!-- SAVE RECIPE BUTTON -->
         <div class="row">
