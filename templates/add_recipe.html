@@ -3,19 +3,19 @@
 
 <h4>Add a recipe</h4>
 <div class="row">
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+    <form id="form_insert_recipe" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
 
         <!-- RECIPE TYPE -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">poll</i>
-                <select id="recipe_categories" name="category_name">
-                    <option value="" disabled selected>Select recipe type</option>
+                <select id="recipe_categories" name="category_name" required>
+                    <option id="default_value" value="" disabled selected>Select recipe type</option>
                     {% for rec_category in recipe_categories %}
-                        <option value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
+                        <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
                     {% endfor %}
                 </select>
-                <label>Recipe category</label>
+                <label data-error="Select an option">Recipe category</label>
             </div>
         </div>
         
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
-                <input id="title" name="title" type="text" class="validate">
+                <input id="title" name="title" type="text" class="validate" required="required">
                 <label for="icon_prefix">Recipe title</label>
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                <textarea id="description" name="description" class="materialize-textarea" required="required"></textarea>
                 <label for="icon_prefix">Recipe description</label>
             </div>
         </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <div class="col s5 offset-s1 input_fields_wrap_ingredients">
-                <input name="ingredients[]" type="text" class="field-long"/>
+                <input name="ingredients[]" type="text" class="field-long" required="required"/>
             </div>
             <div class="col s4">
                 <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add ingredient</button>
@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <div class="col s5 offset-s1 input_fields_wrap_method">
-                <input name="method[]" type="text" class="field-long"/>
+                <input name="method[]" type="text" class="field-long" required="required"/>
             </div>
             <div class="col s4">
                 <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add method</button>
@@ -75,42 +75,34 @@
 
         <!-- TEMPERATURE -->
         <div class="row">
-            <div class="input-field col s4">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">wb_sunny</i>
                 <label for="icon_telephone">Temperature:</label>
                 <br>
             </div>
         </div>
         <div class="row">
-            <div class="col s4 offset-s1">
-                <p>Please enter an oven temperature value and setting.</p>        
-                    <div class="col s1">
-                        <input name="temperature-value" id="temperature-value" type="text" class="validate">
+            <div class="col s12 offset-s1">
+                <p>Please select just one oven temperature or setting (the other settings will be calculated automatically).</p>
+                <div class="row">
+                    <div class="col s1 temperature-input">
+                        <input name="temperature-value" id="temperature-value" type="text" class="validate" required="required">
                     </div>        
                     <div class="col s10">
-                        <input class="with-gap" name="temperature" id="celsius" type="radio"/>
+                        <!-- Note that 'name' attribute below must be identical for the radio buttons -->
+                        <!-- to act as a group i.e. only one can be selected at a time.  -->
+                        <input class="with-gap" name="temperature-type" id="celsius" value="celsius" type="radio" checked/>
                         <label for="celsius">°C</label>
-                        <input class="with-gap" name="temperature" id="celsius-fan" type="radio"/>
-                        <label for="celsius-fan">°C (fan)</label>
-                        <input class="with-gap" name="temperature" id="fahrenheit" type="radio"/>
+                        <input class="with-gap" name="temperature-type" id="celsius-fan" value="celsius-fan" type="radio"/>
+                        <label for="celsius-fan">°C (Fan)</label>
+                        <input class="with-gap" name="temperature-type" id="fahrenheit" value="fahrenheit" type="radio"/>
                         <label for="fahrenheit">°F</label>
-                        <input class="with-gap" name="temperature" id="gas-mark" type="radio"/>
+                        <input class="with-gap" name="temperature-type" id="gas-mark" value="gas-mark" type="radio"/>
                         <label for="gas-mark">Gas Mark</label>
                     </div>        
-                </p>
+                </div>        
             </div>
         </div>
-<!--
-                        <span>
-                            Electric oven: <input id="celsius" name="celsius" type="text" class="validate"> °C
-                        </span>
-
-                    <input id="celsius" name="celsius" type="radio" class="validate"> Normal oven
-                    <input id="celsius" name="celsius" type="text" class="validate"> ° C
-                <input id="celsius-fan" name="celsius-fan" type="radio" class="validate">
-                <input id="fahrenheit" name="fahrenheit" type="radio" class="validate">
-                <input id="gas-mark" name="gas-mark" type="radio" class="validate">
--->
 
         <!-- SAVE RECIPE BUTTON -->
         <div class="row">
@@ -119,6 +111,7 @@
             </button>
         </div>
     </form>
+
 </div>
 
 {% endblock %}
