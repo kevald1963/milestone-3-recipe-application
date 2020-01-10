@@ -13,7 +13,7 @@ mongo = PyMongo(app)
 
 gitpod_url = 'https://5000-cbeeb210-5c15-4820-9704-0260a4ea51d9.ws-eu01.gitpod.io/'
 
-def roundup(x):
+def roundup_nearest_ten(x):
     return int(math.ceil(x / 10.0)) * 10
 
 def roundup_nearest_one(x):
@@ -22,31 +22,54 @@ def roundup_nearest_one(x):
 def compute_temperature_settings(temperature_value, temperature_type):
 
     if temperature_type == "celsius":
-        convert_from_celsius(temperature_value)
+        return convert_from_celsius(temperature_value)
 
     if temperature_type == "celsius-fan":
-        convert_from_celsius_fan(temperature_value)
+        return convert_from_celsius_fan(temperature_value)
+
+    if temperature_type == "fahrenheit":
+        return convert_from_fahrenheit(temperature_value)
+
+    if temperature_type == "gas-mark":
+        return convert_from_gas_mark(temperature_value)
+
+def create_temperature_group(celsius, celsius_fan, fahrenheit, gas_mark):
+    temperature_group = {
+        "celsius": str(celsius),
+        "celsius_fan": str(celsius_fan),
+        "fahrenheit": str(fahrenheit),
+        "gas_mark": str(gas_mark)
+    }
+    return temperature_group
 
 def convert_from_celsius(temperature_value):
     celsius = temperature_value
     celsius_fan = temperature_value - 20
-    fahrenheit = roundup(int((temperature_value * 9/5) + 32))
-    gas_mark = roundup(int((temperature_value - 121) / 14))
-    gas_mark = roundup_nearest_one(int((temperature_value - 121) / 14))
-    print("celsius = " + str(celsius))
-    print("celsius_fan = " + str(celsius_fan))
-    print("fahrenheit = " + str(fahrenheit))
-    print("gas_mark = " + str(gas_mark))
-    temperature_object = {
-        "celsius": celsius,
-        "celsius_fan": celsius_fan,
-        "fahrenheit": fahrenheit,
-        "gas_mark": gas_mark
-    }
-    return temperature_object
+    fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
+    gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
+    return create_temperature_group(celsius, celsius_fan, fahrenheit, gas_mark)
 
 def convert_from_celsius_fan(temperature_value):
-    print("temp conversion celsius-fan called")
+    celsius = temperature_value + 20
+    celsius_fan = temperature_value
+    fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
+    gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
+    return create_temperature_group(celsius, celsius_fan, fahrenheit, gas_mark)
+
+def convert_from_fahrenheit(temperature_value):
+    celsius = roundup_nearest_ten(int((temperature_value - 32) * 5/9))
+    celsius_fan = celsius - 20
+    fahrenheit = temperature_value
+    gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
+    return create_temperature_group(celsius, celsius_fan, fahrenheit, gas_mark)
+
+def convert_from_gas_mark(temperature_value):
+    celsius = roundup_nearest_ten(int((temperature_value * 14) + 121))
+    celsius_fan = celsius - 20
+    # Keep it simple - always use value of celsius for these calculations:
+    fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
+    gas_mark = temperature_value
+    return create_temperature_group(celsius, celsius_fan, fahrenheit, gas_mark)
 
 @app.route('/')
 @app.route('/home')
@@ -72,11 +95,9 @@ def insert_recipe():
 
     temperature_value = int(request.form.get("temperature-value"))
     temperature_type = request.form.get("temperature-type")
-    print("temperature_value = " + str(temperature_value))
-    print("temperature_type = " + temperature_type)
     
-    # Call temperature conversion function
-    compute_temperature_settings(temperature_value, temperature_type)
+    # Call temperature conversion functions to populate the temperature group object.
+    temperature_group = compute_temperature_settings(temperature_value, temperature_type)
 
     # print("Ingredients: " + str(ingredients))
     data = request.form.to_dict() 
@@ -86,8 +107,8 @@ def insert_recipe():
             "title": data["title"],
             "description": data["description"],
             "ingredients": ingredients,
-            "method": method
-            #"temperature": temperature
+            "method": method,
+            "temperature": temperature_group
         }
     )    
     return redirect(gitpod_url + 'add_recipe')
