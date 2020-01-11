@@ -7,10 +7,10 @@
 
         <!-- RECIPE TYPE -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <i class="material-icons prefix">poll</i>
                 <select id="recipe_categories" name="category_name" required>
-                    <option id="default_value" value="" disabled selected>Select recipe type</option>
+                    <option value="" disabled selected>Select recipe type</option>
                     {% for rec_category in recipe_categories %}
                         <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
                     {% endfor %}
@@ -21,19 +21,19 @@
         
         <!-- RECIPE TITLE -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <i class="material-icons prefix">assignment</i>
+                <label for="icon_prefix">Recipe title *</label>
                 <input id="title" name="title" type="text" class="validate" required="required">
-                <label for="icon_prefix">Recipe title</label>
             </div>
         </div>
 
         <!-- RECIPE DESCRIPTION -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <i class="material-icons prefix">subject</i>
-                <textarea id="description" name="description" class="materialize-textarea" required="required"></textarea>
-                <label for="icon_prefix">Recipe description</label>
+                <label for="icon_prefix">Recipe description (optional)</label>
+                <textarea id="description" name="description" class="materialize-textarea"></textarea>
             </div>
         </div>
 
@@ -75,7 +75,7 @@
 
         <!-- TEMPERATURE -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
                 <i class="material-icons prefix">wb_sunny</i>
                 <label for="icon_telephone">Temperature:</label>
                 <br>
@@ -101,6 +101,29 @@
                         <label for="gas-mark">Gas Mark</label>
                     </div>        
                 </div>        
+            </div>
+        </div>
+
+        <!-- COOKING TIME -->
+        <div class="row">
+            <div class="input-field col s2">
+                <i class="material-icons prefix">assignment</i>
+                <label for="icon_prefix">Cooking time (minutes)</label>
+                <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required">
+            </div>
+        </div>
+
+        <!-- USER NAME -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">poll</i>
+                <select id="usernames" name="username" required>
+                    <option value="" disabled selected>Select your user name</option>
+                    {% for user in usernames %}
+                        <option id="username" value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+                <label data-error="Select an option">User name</label>
             </div>
         </div>
 
