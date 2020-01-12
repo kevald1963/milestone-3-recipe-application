@@ -1,18 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h4>Add a recipe</h4>
-<div class="row">
-    <form action="{{ url_for('update_recipe', recipe" merecipe="POST" class="col s12">
+recipe.title = {{ recipe.title }}
 
-        <!-- RECIPE TYPE -->
+<h4>Update a recipe</h4>
+
+<div class="row">
+    <form action="{{ url_for('update_recipe', _id=recipe._id) }}" method="POST" class="col s12">
+
+        <!-- RECIPE CATEGORY -->
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix">poll</i>
                 <select id="recipe_categories" name="category_name" required>
-                    <option value="" disabled selected>Select recipe type</option>
-                    {% for rec_category in recipe_categories %}
-                        <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
+                    <option value="" disabled selected>Select recipe category</option>
+                     {% for cat in recipe_categories %}
+                        {% if cat.category_name == recipe.category %}
+                            <option value="{{ cat.category_name }}" selected>{{ cat.category_name }}</option>
+                        {% else %}
+                            <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 <label data-error="Select an option">Recipe category</label>
@@ -24,30 +31,32 @@
             <div class="input-field col s6">
                 <i class="material-icons prefix">assignment</i>
                 <label for="icon_prefix">Recipe title *</label>
-                <input id="title" name="title" type="text" class="validate" required="required">
+                <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}"/>
             </div>
         </div>
 
         <!-- RECIPE DESCRIPTION -->
         <div class="row">
             <div class="input-field col s6">
-                <i class="material-icons prefix">subject</i>
+                <i class="material-icons prefix">assignment</i>
                 <label for="icon_prefix">Recipe description (optional)</label>
-                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
             </div>
         </div>
 
         <!-- INGREDIENTS -->
         <div class="row">
             <div class="input-field col s4">
-                <i class="material-icons prefix">subject</i>
+                <i class="material-icons prefix">kitchen</i>
                 <label for="icon_telephone">Ingredients list:</label>
                 <br>
             </div>
         </div>
         <div class="row">
             <div class="col s5 offset-s1 input_fields_wrap_ingredients">
-                <input name="ingredients[]" type="text" class="field-long" required="required"/>
+                {% for ingredient in recipe.ingredients %}
+                    <input name="ingredients[]" type="text" class="field-long" required="required" value="{{ ingredient }}"/>
+                {% endfor %}    
             </div>
             <div class="col s4">
                 <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add ingredient</button>
@@ -65,7 +74,9 @@
         </div>
         <div class="row">
             <div class="col s5 offset-s1 input_fields_wrap_method">
-                <input name="method[]" type="text" class="field-long" required="required"/>
+                {% for method in recipe.method %}
+                    <input name="method[]" type="text" class="field-long" required="required" value="{{ method }}"/>
+                {% endfor %}
             </div>
             <div class="col s4">
                 <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add method</button>
@@ -86,11 +97,18 @@
                 <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
                 <div class="row">
                     <div class="col s1 temperature-input">
-                        <input name="temperature-value" id="temperature-value" type="text" class="validate" required="required">
+START HERE >> Can use this notation to query object
+<p>
+    {{ recipe.temperature.celsius }}˚C,  
+    Fan {{ recipe.temperature.celsius_fan }}˚C, 
+    {{ recipe.temperature.fahrenheit }}˚F, 
+    Gas Mark {{ recipe.temperature.gas_mark }}
+</p>                    
+                        <input name="temperature-value" id="temperature-value" type="text" class="validate" required="required" value ="{{ ?? }}"/>
                     </div>        
                     <div class="col s10">
                         <!-- Note that 'name' attribute below must be identical for the radio buttons -->
-                        <!-- to act as a group i.e. only one can be selected at a time.  -->
+                        <!-- to act as a group i.e. only one to be selected at a time.  -->
                         <input class="with-gap" name="temperature-type" id="celsius" value="celsius" type="radio" checked/>
                         <label for="celsius">°C</label>
                         <input class="with-gap" name="temperature-type" id="celsius-fan" value="celsius-fan" type="radio"/>
@@ -107,29 +125,23 @@
         <!-- COOKING TIME -->
         <div class="row">
             <div class="input-field col s2">
-                <i class="material-icons prefix">assignment</i>
+                <i class="material-icons prefix">access_time</i>
                 <label for="icon_prefix">Cooking time (minutes)</label>
-                <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required">
+                <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required" value="{{ recipe.cooking_time }}"/> 
             </div>
         </div>
 
-        <!-- USER NAME -->
+        <!-- USER NAME / POSTED BY (READ ONLY)  -->
         <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">poll</i>
-                <select id="usernames" name="username" required>
-                    <option value="" disabled selected>Select your user name</option>
-                    {% for user in usernames %}
-                        <option id="username" value="{{ user.username }}">{{ user.username }}</option>
-                    {% endfor %}
-                </select>
-                <label data-error="Select an option">User name</label>
+            <div class="col s6">
+                <i class="material-icons prefix">people</i>
+                <span>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted }}</span>
             </div>
         </div>
 
-        <!-- SAVE RECIPE BUTTON -->
+        <!-- UPDATE RECIPE BUTTON -->
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Save recipe
+            <button class="btn waves-effect waves-light" type="submit" name="action">Update recipe
                 <i class="material-icons right">playlist_add</i>
             </button>
         </div>

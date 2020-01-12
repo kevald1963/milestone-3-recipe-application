@@ -117,15 +117,15 @@ def insert_recipe():
     return redirect(gitpod_url + 'recipe')
     #return redirect(url_for('recipe'))
 
-@app.route('/edit_recipe/<recipe_id>')
-def edit_recipe(recipe_id):
-    _recipe = mongo.db.recipe.find_one({"_id": ObjectId(_id)})
+@app.route('/edit_recipe/<_id>')
+def edit_recipe(_id):
+    _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
     _recipe_categories = mongo.db.recipe_categories.find()
     recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
-    return render_template("edit_recipe.html", recipe=_recipe, recipe_categories = recipe_category_list)
+    return render_template("edit_recipe.html", recipe = _recipe, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
 
-@app.route('/update_recipe/<recipe_id>', methods=["POST"])
-def update_task(recipe_id):
+@app.route('/update_recipe/<_id>', methods=["POST"])
+def update_recipe(_id):
     recipes = mongo.db.recipes
     recipes.update({"_id": ObjectId(_id)},
     {

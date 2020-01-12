@@ -10,7 +10,7 @@
             <div class="input-field col s6">
                 <i class="material-icons prefix">poll</i>
                 <select id="recipe_categories" name="category_name" required>
-                    <option value="" disabled selected>Select recipe type</option>
+                    <option value="" disabled selected>Select recipe category</option>
                     {% for rec_category in recipe_categories %}
                         <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
                     {% endfor %}
@@ -116,7 +116,7 @@
         <!-- USER NAME -->
         <div class="row">
             <div class="input-field col s6">
-                <i class="material-icons prefix">poll</i>
+                <i class="material-icons prefix">people</i>
                 <select id="usernames" name="username" required>
                     <option value="" disabled selected>Select your user name</option>
                     {% for user in usernames %}
