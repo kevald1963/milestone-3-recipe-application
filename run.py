@@ -87,10 +87,9 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
-
     recipes = mongo.db.recipes
     
-    # Multi-line elements need converted to a list before saving to MongoDB.
+    # Multi-line input elements need converted to a list before saving to MongoDB.
     ingredients = request.form.getlist("ingredients[]")
     method = request.form.getlist("method[]")
 
@@ -115,7 +114,34 @@ def insert_recipe():
             "popular_recipe": False
         }
     )    
-    return redirect(gitpod_url + 'add_recipe')
+    return redirect(gitpod_url + 'recipe')
+    #return redirect(url_for('recipe'))
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    _recipe = mongo.db.recipe.find_one({"_id": ObjectId(_id)})
+    _recipe_categories = mongo.db.recipe_categories.find()
+    recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
+    return render_template("edit_recipe.html", recipe=_recipe, recipe_categories = recipe_category_list)
+
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
+def update_task(recipe_id):
+    recipes = mongo.db.recipes
+    recipes.update({"_id": ObjectId(_id)},
+    {
+        "category": request.form.get("category_name"),
+        "title": request.form.get("title"),
+        "description": request.form.get("description"),
+        "ingredients": ingredients,
+        "method": method,
+        "temperature": temperature_object,
+        "cooking_time": request.form.get("cooking_time"),
+        "posted_by": request.form.get("username"),
+        "date_posted": request.form.get("date_posted"),
+        "date_last_updated": datetime.datetime.utcnow(),
+        "popular_recipe": request.form.get("popular_recipe")
+    })
+    return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
