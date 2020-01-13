@@ -35,12 +35,13 @@ def compute_temperature_settings(temperature_value, temperature_type):
     if temperature_type == "gas-mark":
         return convert_from_gas_mark(temperature_value)
 
-def create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark):
+def create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type):
     temperature_object = {
         "celsius": str(celsius),
         "celsius_fan": str(celsius_fan),
         "fahrenheit": str(fahrenheit),
-        "gas_mark": str(gas_mark)
+        "gas_mark": str(gas_mark),
+        "user_temperature_type": user_temperature_type
     }
     return temperature_object
 
@@ -49,28 +50,32 @@ def convert_from_celsius(temperature_value):
     celsius_fan = temperature_value - 20
     fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
     gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
-    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark)
+    user_temperature_type = 0
+    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type)
 
 def convert_from_celsius_fan(temperature_value):
     celsius = temperature_value + 20
     celsius_fan = temperature_value
     fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
     gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
-    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark)
+    user_temperature_type = 1
+    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type)
 
 def convert_from_fahrenheit(temperature_value):
     celsius = roundup_nearest_ten(int((temperature_value - 32) * 5/9))
     celsius_fan = celsius - 20
     fahrenheit = temperature_value
     gas_mark = roundup_nearest_one(int((celsius - 121) / 14))
-    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark)
+    user_temperature_type = 2
+    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type)
 
 def convert_from_gas_mark(temperature_value):
     celsius = roundup_nearest_ten(int((temperature_value * 14) + 121))
     celsius_fan = celsius - 20
     fahrenheit = roundup_nearest_ten(int((celsius * 9/5) + 32))
     gas_mark = temperature_value
-    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark)
+    user_temperature_type = 3
+    return create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type)
 
 @app.route('/')
 @app.route('/home')
@@ -120,9 +125,28 @@ def insert_recipe():
 @app.route('/edit_recipe/<_id>')
 def edit_recipe(_id):
     _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
+
+    # The user_temperature_type integer variable determines the type the user originally selected
+    # when adding the recipe to the database i.e. celsius, celsius fan, fahrenheit or gas mark. This 
+    # is need when redisplaying the temperature for update because only one type is entered by the 
+    # user when adding the recipe. The rest are derived by formulae.
+    _user_temperature_type = _recipe["temperature"]["user_temperature_type"]
+
+    if _user_temperature_type == 0:
+        _temperature_value = _recipe["temperature"]["celsius"]
+
+    if _user_temperature_type == 1:
+        _temperature_value = _recipe["temperature"]["celsius_fan"]
+
+    if _user_temperature_type == 2:
+        _temperature_value = _recipe["temperature"]["fahrenheit"]
+
+    if _user_temperature_type == 3:
+        _temperature_value = _recipe["temperature"]["gas_mark"]
+
     _recipe_categories = mongo.db.recipe_categories.find()
     recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
-    return render_template("edit_recipe.html", recipe = _recipe, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
+    return render_template("edit_recipe.html", recipe = _recipe, user_temperature_type = _user_temperature_type, temperature_value = _temperature_value, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
 
 @app.route('/update_recipe/<_id>', methods=["POST"])
 def update_recipe(_id):

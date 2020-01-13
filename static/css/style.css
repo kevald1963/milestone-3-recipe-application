@@ -4,13 +4,20 @@ header {
     margin: auto;
 }
 
-.input_fields_wrap{
-max-width: 350px;
+.input_fields_wrap {
+    max-width: 350px;
 }
 
-.input_fields_wrap input[type=text]{
- width:100%;
- margin:2px 0;
+.input_fields_wrap input[type=text] {
+    width:100%;
+    margin:2px 0;
+}
+
+.temperature-radio-button {
+    position: relative;
+    border: 2px solid #ef5350;
+    background-color: #ef5350;
+    margin-right: 50px;
 }
 
 .btn-small {

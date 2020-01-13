@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-recipe.title = {{ recipe.title }}
+user_temperature_type = {{ user_temperature_type }}
 
 <h4>Update a recipe</h4>
 
@@ -30,7 +30,7 @@ recipe.title = {{ recipe.title }}
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix">assignment</i>
-                <label for="icon_prefix">Recipe title *</label>
+                <label for="icon_prefix">Recipe title</label>
                 <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}"/>
             </div>
         </div>
@@ -97,25 +97,30 @@ recipe.title = {{ recipe.title }}
                 <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
                 <div class="row">
                     <div class="col s1 temperature-input">
-START HERE >> Can use this notation to query object
-<p>
-    {{ recipe.temperature.celsius }}˚C,  
-    Fan {{ recipe.temperature.celsius_fan }}˚C, 
-    {{ recipe.temperature.fahrenheit }}˚F, 
-    Gas Mark {{ recipe.temperature.gas_mark }}
-</p>                    
-                        <input name="temperature-value" id="temperature-value" type="text" class="validate" required="required" value ="{{ ?? }}"/>
+                        <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required" value ="{{ temperature_value }}"/>
                     </div>        
                     <div class="col s10">
-                        <!-- Note that 'name' attribute below must be identical for the radio buttons -->
-                        <!-- to act as a group i.e. only one to be selected at a time.  -->
-                        <input class="with-gap" name="temperature-type" id="celsius" value="celsius" type="radio" checked/>
+                        {% if user_temperature_type == 0 %}
+                            {% set celsius_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 1 %}
+                            {% set celsius_fan_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 2 %}
+                            {% set fahrenheit_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 3 %}
+                            {% set gas_mark_checked = "checked" %}
+                        {% endif %}
+                        <!-- Note that 'name' attribute below must be identical to make the radio buttons -->
+                        <!-- act as a group i.e. only one is selectable at a time. -->
+                        <input class="temperature-radio-button with-gap" name="temperature-type" id="celsius" value="celsius" type="radio" {{ celsius_checked }}/>
                         <label for="celsius">°C</label>
-                        <input class="with-gap" name="temperature-type" id="celsius-fan" value="celsius-fan" type="radio"/>
+                        <input class="temperature-radio-button with-gap" name="temperature-type" id="celsius-fan" value="celsius-fan" type="radio" {{ celsius_fan_checked }}/>
                         <label for="celsius-fan">°C (Fan)</label>
-                        <input class="with-gap" name="temperature-type" id="fahrenheit" value="fahrenheit" type="radio"/>
+                        <input class="temperature-radio-button with-gap" name="temperature-type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }}/>
                         <label for="fahrenheit">°F</label>
-                        <input class="with-gap" name="temperature-type" id="gas-mark" value="gas-mark" type="radio"/>
+                        <input class="temperature-radio-button with-gap" name="temperature-type" id="gas-mark" value="gas-mark" type="radio" {{ gas_mark_checked }}/>
                         <label for="gas-mark">Gas Mark</label>
                     </div>        
                 </div>        
