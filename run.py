@@ -2,6 +2,7 @@ import os
 import math
 import datetime
 import pytz
+from datetime import datetime
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
@@ -98,8 +99,8 @@ def insert_recipe():
     ingredients = request.form.getlist("ingredients[]")
     method = request.form.getlist("method[]")
 
-    temperature_value = int(request.form.get("temperature-value"))
-    temperature_type = request.form.get("temperature-type")
+    temperature_value = int(request.form.get("temperature_value"))
+    temperature_type = request.form.get("temperature_type")
     
     # Call temperature conversion functions to populate the temperature object.
     temperature_object = compute_temperature_settings(temperature_value, temperature_type)
@@ -151,6 +152,17 @@ def edit_recipe(_id):
 @app.route('/update_recipe/<_id>', methods=["POST"])
 def update_recipe(_id):
     recipes = mongo.db.recipes
+
+    # Multi-line input elements need converted to a list before saving to MongoDB.
+    ingredients = request.form.getlist("ingredients[]")
+    method = request.form.getlist("method[]")
+
+    temperature_value = int(request.form.get("temperature_value"))
+    temperature_type = request.form.get("temperature_type")
+
+    # Call temperature conversion functions to populate the temperature object.
+    temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+
     recipes.update({"_id": ObjectId(_id)},
     {
         "category": request.form.get("category_name"),
@@ -160,10 +172,10 @@ def update_recipe(_id):
         "method": method,
         "temperature": temperature_object,
         "cooking_time": request.form.get("cooking_time"),
-        "posted_by": request.form.get("username"),
-        "date_posted": request.form.get("date_posted"),
-        "date_last_updated": datetime.datetime.utcnow(),
-        "popular_recipe": request.form.get("popular_recipe")
+        "posted_by": request.form.get("posted_by"),
+        "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
+        "date_last_updated": datetime.utcnow(),
+        "popular_recipe": request.form.get("popular_recipe", False)
     })
     return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))

@@ -136,9 +136,12 @@
 
         <!-- USER NAME / POSTED BY (READ ONLY)  -->
         <div class="row">
-            <div class="col s6">
+            <div class="input-field s3">
                 <i class="material-icons prefix">person</i>
                 <label for="icon_prefix">Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>
+                <br>
+                <input hidden id="date_posted" name="date_posted" type="text" class="validate" value="{{ recipe.date_posted }}"/> 
+                <input hidden id="posted_by" name="posted_by" type="text" class="validate" value="{{ recipe.posted_by }}"/> 
             </div>
         </div>
 
