@@ -23,7 +23,7 @@
                 <p>
                    {{ recipe.description }}
                 </p>
-                <span>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted }}</span>
+                <span>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</span>
             </div>
         </li>
         {% endfor %}
