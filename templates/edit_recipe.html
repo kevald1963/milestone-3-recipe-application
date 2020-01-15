@@ -112,14 +112,14 @@
                         {% endif %}
                         <!-- Note that 'name' attribute below must be identical to make the radio buttons -->
                         <!-- act as a group i.e. only one is selectable at a time. -->
-                        <input class="temperature-radio-button with-gap" name="temperature-type" id="celsius" value="celsius" type="radio" {{ celsius_checked }}/>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" {{ celsius_checked }}/>
                         <label for="celsius">°C</label>
-                        <input class="temperature-radio-button with-gap" name="temperature-type" id="celsius-fan" value="celsius-fan" type="radio" {{ celsius_fan_checked }}/>
-                        <label for="celsius-fan">°C (Fan)</label>
-                        <input class="temperature-radio-button with-gap" name="temperature-type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }}/>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio" {{ celsius_fan_checked }}/>
+                        <label for="celsius_fan">°C (Fan)</label>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }}/>
                         <label for="fahrenheit">°F</label>
-                        <input class="temperature-radio-button with-gap" name="temperature-type" id="gas-mark" value="gas-mark" type="radio" {{ gas_mark_checked }}/>
-                        <label for="gas-mark">Gas Mark</label>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio" {{ gas_mark_checked }}/>
+                        <label for="gas_mark">Gas Mark</label>
                     </div>        
                 </div>        
             </div>
@@ -134,14 +134,13 @@
             </div>
         </div>
 
-        <!-- USER NAME / POSTED BY (READ ONLY)  -->
+        <!-- USER NAME / POSTED BY (READ ONLY) -->
         <div class="row">
-            <div class="input-field s3">
-                <i class="material-icons prefix">person</i>
-                <label for="icon_prefix">Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>
-                <br>
+            <div class="col s12">
+                <label>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>
                 <input hidden id="date_posted" name="date_posted" type="text" class="validate" value="{{ recipe.date_posted }}"/> 
                 <input hidden id="posted_by" name="posted_by" type="text" class="validate" value="{{ recipe.posted_by }}"/> 
+                <input hidden id="popular_recipe" name="popular_recipe" type="text" class="validate" value="{{ recipe.popular_recipe }}"/> 
             </div>
         </div>
 

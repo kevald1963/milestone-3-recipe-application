@@ -16,6 +16,14 @@ mongo = PyMongo(app)
 
 gitpod_url = 'https://5000-cbeeb210-5c15-4820-9704-0260a4ea51d9.ws-eu01.gitpod.io/'
 
+def string_to_boolean(boolean_string):
+    if boolean_string == "True":
+         return True
+    elif boolean_string == "False":
+         return False
+    else:
+         raise ValueError("Cannot covert {} to a boolean".format(boolean_string))
+
 def roundup_nearest_ten(x):
     return int(math.ceil(x / 10.0)) * 10
 
@@ -24,19 +32,25 @@ def roundup_nearest_one(x):
 
 def compute_temperature_settings(temperature_value, temperature_type):
 
+    print("cts_temperature_value = " + str(temperature_value))
+    print("cts_temperature_type = " + temperature_type)
+
     if temperature_type == "celsius":
         return convert_from_celsius(temperature_value)
 
-    if temperature_type == "celsius-fan":
+    if temperature_type == "celsius_fan":
         return convert_from_celsius_fan(temperature_value)
 
     if temperature_type == "fahrenheit":
         return convert_from_fahrenheit(temperature_value)
 
-    if temperature_type == "gas-mark":
+    if temperature_type == "gas_mark":
         return convert_from_gas_mark(temperature_value)
 
 def create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type):
+
+    print("called create_temperature_object")
+
     temperature_object = {
         "celsius": str(celsius),
         "celsius_fan": str(celsius_fan),
@@ -160,10 +174,14 @@ def update_recipe(_id):
     temperature_value = int(request.form.get("temperature_value"))
     temperature_type = request.form.get("temperature_type")
 
-    # Call temperature conversion functions to populate the temperature object.
+    print("temperature_value = " + str(temperature_value))
+    print("temperature_type = " + temperature_type)
+    
+    # Call temperature conversion functions to populate the temperature object before update.
     temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+    print("temperature_object = " + str(temperature_object))
 
-    recipes.update({"_id": ObjectId(_id)},
+    recipes.replace_one({"_id": ObjectId(_id)},
     {
         "category": request.form.get("category_name"),
         "title": request.form.get("title"),
@@ -175,7 +193,7 @@ def update_recipe(_id):
         "posted_by": request.form.get("posted_by"),
         "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
         "date_last_updated": datetime.utcnow(),
-        "popular_recipe": request.form.get("popular_recipe", False)
+        "popular_recipe": string_to_boolean(request.form.get("popular_recipe"))
     })
     return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))
