@@ -45,40 +45,40 @@
         <!-- INGREDIENTS -->
         <div class="row">
             <div class="input-field col s4">
-                <i class="material-icons prefix">kitchen</i>
+                <i class="material-icons prefix">shopping_basket</i>
                 <label for="icon_telephone">Ingredients list:</label>
                 <br>
             </div>
         </div>
         <div class="row">
-            <div class="col s5 offset-s1 input_fields_wrap_ingredients">
+            <div class="col s8 offset-s1 input_fields_wrap_ingredients">
                 {% for ingredient in recipe.ingredients %}
                     <input name="ingredients[]" type="text" class="field-long" required="required" value="{{ ingredient }}"/>
-                {% endfor %}    
+                {% endfor %}
             </div>
-            <div class="col s4">
-                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add ingredient</button>
-                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove ingredient</button>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove</button>
             </div>        
         </div>        
 
         <!-- METHOD -->
         <div class="row">
             <div class="input-field col s4">
-                <i class="material-icons prefix">subject</i>
+                <i class="material-icons prefix">list</i>
                 <label for="icon_telephone">Method list:</label>
                 <br>
             </div>
         </div>
         <div class="row">
-            <div class="col s5 offset-s1 input_fields_wrap_method">
+            <div class="col s8 offset-s1 input_fields_wrap_method">
                 {% for method in recipe.method %}
                     <input name="method[]" type="text" class="field-long" required="required" value="{{ method }}"/>
                 {% endfor %}
             </div>
-            <div class="col s4">
-                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add method</button>
-                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove method</button>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove</button>
             </div>        
         </div>        
 
