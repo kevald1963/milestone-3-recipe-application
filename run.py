@@ -16,7 +16,7 @@ mongo = PyMongo(app)
 
 gitpod_url = 'https://5000-cbeeb210-5c15-4820-9704-0260a4ea51d9.ws-eu01.gitpod.io/'
 
-# Retain this sanity check to test that the test module is working!
+# Retain this sanity check to ensure the test module is working!
 def check():
     return 1
 
@@ -26,8 +26,8 @@ def string_to_boolean(boolean_string):
     elif boolean_string == "False":
          return False
     else:
-         raise ValueError("Cannot covert {} to a boolean".format(boolean_string))
-
+         raise ValueError("Cannot covert {} to a boolean.".format(boolean_string))
+   
 def roundup_nearest_ten(x):
     return int(math.ceil(x / 10.0)) * 10
 
@@ -35,9 +35,6 @@ def roundup_nearest_one(x):
     return int(math.ceil(x))
 
 def compute_temperature_settings(temperature_value, temperature_type):
-
-    print("cts_temperature_value = " + str(temperature_value))
-    print("cts_temperature_type = " + temperature_type)
 
     if temperature_type == "celsius":
         return convert_from_celsius(temperature_value)
@@ -52,8 +49,6 @@ def compute_temperature_settings(temperature_value, temperature_type):
         return convert_from_gas_mark(temperature_value)
 
 def create_temperature_object(celsius, celsius_fan, fahrenheit, gas_mark, user_temperature_type):
-
-    print("called create_temperature_object")
 
     temperature_object = {
         "celsius": str(celsius),
@@ -177,12 +172,10 @@ def update_recipe(_id):
 
     temperature_value = int(request.form.get("temperature_value"))
     temperature_type = request.form.get("temperature_type")
-
-    print("temperature_value = " + str(temperature_value))
-    print("temperature_type = " + temperature_type)
-    
+ 
     # Call temperature conversion functions to populate the temperature object before update.
     temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+    
     print("temperature_object = " + str(temperature_object))
 
     recipes.replace_one({"_id": ObjectId(_id)},
