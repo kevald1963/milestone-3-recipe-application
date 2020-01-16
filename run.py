@@ -16,6 +16,10 @@ mongo = PyMongo(app)
 
 gitpod_url = 'https://5000-cbeeb210-5c15-4820-9704-0260a4ea51d9.ws-eu01.gitpod.io/'
 
+# Retain this sanity check to test that the test module is working!
+def check():
+    return 1
+
 def string_to_boolean(boolean_string):
     if boolean_string == "True":
          return True
