@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h4>Recipe details</h4>
+
+<div class="row">
+    <form action="#" method="POST" class="col s12">
+
+        <!-- RECIPE CATEGORY -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">poll</i>
+                <select id="recipe_categories" name="category_name" required>
+                    <option value="" disabled selected>Select recipe category</option>
+                     {% for cat in recipe_categories %}
+                        {% if cat.category_name == recipe.category %}
+                            <option value="{{ cat.category_name }}" disabled selected>{{ cat.category_name }}</option>
+                        {% else %}
+                            <option value="{{ cat.category_name }}" disabled>{{ cat.category_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label data-error="Select an option">Recipe category</label>
+            </div>
+        </div>
+        
+        <!-- RECIPE TITLE -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">assignment</i>
+                <label for="icon_prefix">Recipe title</label>
+                <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}" disabled/>
+            </div>
+        </div>
+
+        <!-- RECIPE DESCRIPTION -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">assignment</i>
+                <label for="icon_prefix">Recipe description (optional)</label>
+                <textarea id="description" name="description" class="materialize-textarea" disabled>{{ recipe.description }}</textarea>
+            </div>
+        </div>
+
+        <!-- INGREDIENTS -->
+        <div class="row">
+            <div class="input-field col s4">
+                <i class="material-icons prefix">shopping_basket</i>
+                <label for="icon_telephone">Ingredients list:</label>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s8 offset-s1 input_fields_wrap_ingredients">
+                {% for ingredient in recipe.ingredients %}
+                    <input name="ingredients[]" type="text" class="field-long" required="required" value="{{ ingredient }}" disabled/>
+                {% endfor %}
+            </div>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button" disabled>Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button" disabled>Remove</button>
+            </div>        
+        </div>        
+
+        <!-- METHOD -->
+        <div class="row">
+            <div class="input-field col s4">
+                <i class="material-icons prefix">list</i>
+                <label for="icon_telephone">Method list:</label>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s8 offset-s1 input_fields_wrap_method">
+                {% for method in recipe.method %}
+                    <input name="method[]" type="text" class="field-long" required="required" value="{{ method }}" disabled/>
+                {% endfor %}
+            </div>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button" disabled>Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button" disabled>Remove</button>
+            </div>        
+        </div>        
+
+        <!-- TEMPERATURE -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">wb_sunny</i>
+                <label for="icon_telephone">Temperature:</label>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 offset-s1">
+                <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
+                <div class="row">
+                    <div class="col s1 temperature-input">
+                        <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required" value ="{{ temperature_value }}" disabled/>
+                    </div>        
+                    <div class="col s10">
+                        {% if user_temperature_type == 0 %}
+                            {% set celsius_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 1 %}
+                            {% set celsius_fan_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 2 %}
+                            {% set fahrenheit_checked = "checked" %}
+                        {% endif %}
+                        {% if user_temperature_type == 3 %}
+                            {% set gas_mark_checked = "checked" %}
+                        {% endif %}
+                        <!-- Note that 'name' attribute below must be identical to make the radio buttons -->
+                        <!-- act as a group i.e. only one is selectable at a time. -->
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" {{ celsius_checked }} disabled/>
+                        <label for="celsius">°C</label>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio" {{ celsius_fan_checked }} disabled/>
+                        <label for="celsius_fan">°C (Fan)</label>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }} disabled/>
+                        <label for="fahrenheit">°F</label>
+                        <input class="temperature-radio-button with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio" {{ gas_mark_checked }} disabled/>
+                        <label for="gas_mark">Gas Mark</label>
+                    </div>        
+                </div>        
+            </div>
+        </div>
+
+        <!-- COOKING TIME -->
+        <div class="row">
+            <div class="input-field col s2">
+                <i class="material-icons prefix">access_time</i>
+                <label for="icon_prefix">Cooking time (minutes)</label>
+                <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required" value="{{ recipe.cooking_time }}" disabled/> 
+            </div>
+        </div>
+
+        <!-- USER NAME, POSTING DETAILS, ETC (READ ONLY) -->
+        <div class="row">
+            <div class="col s12">
+                <label>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>
+                <input hidden id="date_posted" name="date_posted" type="text" class="validate" value="{{ recipe.date_posted }}"/> 
+                <input hidden id="posted_by" name="posted_by" type="text" class="validate" value="{{ recipe.posted_by }}"/> 
+                <input hidden id="popular_recipe" name="popular_recipe" type="text" class="validate" value="{{ recipe.popular_recipe }}"/> 
+                <input hidden id="archived" name="archived" type="text" class="validate" value="{{ recipe.archived }}"/> 
+            </div>
+        </div>
+
+        <!-- RETURN BUTTON -->
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Back to Recipes
+                <i class="material-icons right">playlist_add</i>
+            </button>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

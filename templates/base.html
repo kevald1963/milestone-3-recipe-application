@@ -52,9 +52,19 @@
             $('.collapsible').collapsible();
             $('select').material_select();
             $('.button-collapse').sideNav();
+            $("#archive-button").click(function() {
+                var confirmBox = $("#confirm");
+                confirmBox.txt = "WARNING: You are about to archive this recipe, which means it will no longer be shown here. It can, however, be restored on request. Click OK to proceed, otherwise click Cancel."
+                var txt;
+                if (confirm(confirmBox.txt)) {
+                    txt = "You pressed OK!";
+                } else {
+                    txt = "You pressed Cancel!";
+                };
+                document.getElementById("demo").innerHTML = txt;
+            });
         });
     </script>
-
     <script> 
         $("select[required]").css({display:"block", height:0, padding:0, width:0, position:'absolute'});
     </script>

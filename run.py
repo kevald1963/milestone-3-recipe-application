@@ -94,11 +94,11 @@ def convert_from_gas_mark(temperature_value):
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("index.html", recipe=mongo.db.recipes.find_one({'popular_recipe': True}))
+    return render_template("index.html", recipe=mongo.db.recipes.find_one({"popular_recipe": True, "archived": False}))
 
 @app.route('/recipes')
 def recipes():
-    return render_template("recipes.html", recipes=list(mongo.db.recipes.find()))
+    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -130,17 +130,44 @@ def insert_recipe():
             "cooking_time": data["cooking_time"],
             "posted_by": data["username"],
             "date_posted": datetime.datetime.utcnow(),
-            "popular_recipe": False
+            "popular_recipe": False,
+            "archived": False
         }
     )    
     return redirect(gitpod_url + 'recipe')
     #return redirect(url_for('recipe'))
 
+@app.route('/view_recipe/<_id>')
+def view_recipe(_id):
+    _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
+
+    # The user_temperature_type variable determines the type the user originally selected
+    # when adding the recipe to the database i.e. celsius, celsius fan, fahrenheit or gas mark. This 
+    # is need when redisplaying the temperature for update because only one type is entered by the 
+    # user when adding the recipe. The rest are derived by formulae.
+    _user_temperature_type = _recipe["temperature"]["user_temperature_type"]
+
+    if _user_temperature_type == 0:
+        _temperature_value = _recipe["temperature"]["celsius"]
+
+    if _user_temperature_type == 1:
+        _temperature_value = _recipe["temperature"]["celsius_fan"]
+
+    if _user_temperature_type == 2:
+        _temperature_value = _recipe["temperature"]["fahrenheit"]
+
+    if _user_temperature_type == 3:
+        _temperature_value = _recipe["temperature"]["gas_mark"]
+
+    _recipe_categories = mongo.db.recipe_categories.find()
+    recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
+    return render_template("view_recipe.html", recipe = _recipe, user_temperature_type = _user_temperature_type, temperature_value = _temperature_value, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
+
 @app.route('/edit_recipe/<_id>')
 def edit_recipe(_id):
     _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
 
-    # The user_temperature_type integer variable determines the type the user originally selected
+    # The user_temperature_type variable determines the type the user originally selected
     # when adding the recipe to the database i.e. celsius, celsius fan, fahrenheit or gas mark. This 
     # is need when redisplaying the temperature for update because only one type is entered by the 
     # user when adding the recipe. The rest are derived by formulae.
@@ -176,8 +203,6 @@ def update_recipe(_id):
     # Call temperature conversion functions to populate the temperature object before update.
     temperature_object = compute_temperature_settings(temperature_value, temperature_type)
     
-    print("temperature_object = " + str(temperature_object))
-
     recipes.replace_one({"_id": ObjectId(_id)},
     {
         "category": request.form.get("category_name"),
@@ -190,10 +215,23 @@ def update_recipe(_id):
         "posted_by": request.form.get("posted_by"),
         "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
         "date_last_updated": datetime.utcnow(),
-        "popular_recipe": string_to_boolean(request.form.get("popular_recipe"))
+        "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
+        "archived": string_to_boolean(request.form.get("archived"))
     })
     return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))
+
+@app.route('/archive_recipe/<_id>')
+def archive_recipe(_id):
+    recipes = mongo.db.recipes
+
+    # Set the archived flag for this recipe.
+    #recipes.replace_one({"_id": ObjectId(_id)},
+    #{"$set":
+    #    {"archived": True}
+    #})
+    # Refresh recipes page now that recipe has been archived and should no longer be displayed.
+    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

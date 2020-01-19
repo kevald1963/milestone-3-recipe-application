@@ -4,6 +4,11 @@ header {
     margin: auto;
 }
 
+#confirm {
+    padding: 20px;
+    background-color: #fa9e3c;
+}
+
 .input_fields_wrap {
     max-width: 350px;
 }
