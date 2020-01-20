@@ -221,17 +221,19 @@ def update_recipe(_id):
     return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))
 
-@app.route('/archive_recipe/<_id>')
+@app.route('/archive_recipe/<_id>?data-archive', methods=["POST"])
 def archive_recipe(_id):
     recipes = mongo.db.recipes
-
-    # Set the archived flag for this recipe.
-    #recipes.replace_one({"_id": ObjectId(_id)},
-    #{"$set":
-    #    {"archived": True}
-    #})
+    
+    Set the archived flag for this recipe.
+    recipes.update_one({"_id": ObjectId(_id)},
+    {"$set":
+        {"archived": True}
+    })
+    
     # Refresh recipes page now that recipe has been archived and should no longer be displayed.
-    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
+    return render_template("recipes.html", recipes=list(mongo.db.recipes.find()))
+    #return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

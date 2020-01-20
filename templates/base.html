@@ -53,15 +53,12 @@
             $('select').material_select();
             $('.button-collapse').sideNav();
             $("#archive-button").click(function() {
+                var archive_flag = "False";
                 var confirmBox = $("#confirm");
                 confirmBox.txt = "WARNING: You are about to archive this recipe, which means it will no longer be shown here. It can, however, be restored on request. Click OK to proceed, otherwise click Cancel."
-                var txt;
                 if (confirm(confirmBox.txt)) {
-                    txt = "You pressed OK!";
-                } else {
-                    txt = "You pressed Cancel!";
+                    archive_flag = "True";
                 };
-                document.getElementById("demo").innerHTML = txt;
             });
         });
     </script>
