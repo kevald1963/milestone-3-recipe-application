@@ -134,8 +134,8 @@ def insert_recipe():
             "archived": False
         }
     )    
-    return redirect(gitpod_url + 'recipe')
-    #return redirect(url_for('recipe'))
+    #return redirect(gitpod_url + 'recipe')
+    return redirect(url_for('recipe'))
 
 @app.route('/view_recipe/<_id>')
 def view_recipe(_id):
@@ -218,8 +218,8 @@ def update_recipe(_id):
         "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
         "archived": string_to_boolean(request.form.get("archived"))
     })
-    return redirect(gitpod_url + 'recipes')
-    #return redirect(url_for('recipes'))
+    #return redirect(gitpod_url + 'recipes')
+    return redirect(url_for('recipes'))
 
 @app.route('/archive_recipe/<_id>')
 def archive_recipe(_id):
