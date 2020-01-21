@@ -52,13 +52,9 @@
             $('.collapsible').collapsible();
             $('select').material_select();
             $('.button-collapse').sideNav();
-            $("#archive-button").click(function() {
-                var archive_flag = "False";
-                var confirmBox = $("#confirm");
-                confirmBox.txt = "WARNING: You are about to archive this recipe, which means it will no longer be shown here. It can, however, be restored on request. Click OK to proceed, otherwise click Cancel."
-                if (confirm(confirmBox.txt)) {
-                    archive_flag = "True";
-                };
+            $(".hide-recipe-button").click(function() {
+                var txt = "INFORMATION: You are about to hide this recipe. You can display it again by restoring from the Archive page."
+                alert(txt);
             });
         });
     </script>
