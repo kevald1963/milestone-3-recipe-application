@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700');
 
-header {
-    margin: auto;
-}
-
-#confirm {
-    padding: 20px;
-    background-color: #fa9e3c;
+/* Materialize is over-riding this. How to fix? */
+h3 {
+    margin-bottom: 0;
 }
 
 .input_fields_wrap {

@@ -14,30 +14,27 @@
 </head>
 
 <body>
-
-    <!-- HEADER -->
-    <header class="container-fluid">
-        <div class="row">
-            <div class="col s12"></div>
-                <h3>Baking Hot!</h3>
-                <h4>The No. 1 Spot For All Your Baking Recipes!</h4>
-                <!-- Home page content only here. -->
-                {% block content_home %}
-                {% endblock %}
-            </div>
-        </div>
-    </header>
-
-    <!-- NAVBAR --> 
+   
+    <!-- NAVBAR -->
     <nav class="container-fluid">
         <div class="row">
-            <div class="col s12"></div>
-                <a href="{{ url_for('home') }}">[ Home ]</a>
-                <a href="{{ url_for('recipes') }}">[ Recipes ]</a>
+            <div class="nav-wrapper col s12">
+                <a href="{{ url_for('home') }}" class="brand-logo"><i class="material-icons left">wb_sunny</i>Baking Hot!</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('home') }}"><i class="material-icons left">home</i>Home</a></li>
+                    <li><a href="{{ url_for('recipes') }}"><i class="material-icons left">assignment</i>Recipes</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add a recipe</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add a recipe</a></li>
+                </ul>
             </div>
         </div>
     </nav>
-
+  
     <!-- MAIN -->
     <main class="container-fluid">
         {% block content %}
@@ -58,6 +55,7 @@
             });
         });
     </script>
+
     <script> 
         $("select[required]").css({display:"block", height:0, padding:0, width:0, position:'absolute'});
     </script>

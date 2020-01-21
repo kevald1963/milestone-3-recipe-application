@@ -11,7 +11,13 @@
 
 <div class="row">
 	<div class="col s12">
-		<h3>Recipe of the Day - {{ recipe.title }}</h3>
+		<h3>Recipe of the Day</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s6">
+        <h4>{{ recipe.title }}</h4>
 		<p>{{ recipe.description }}</p>
 	</div>
 </div>
@@ -24,7 +30,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<h3>Ingredients</h3>
+		<h5>Ingredients</h5>
         {% for ingredient in recipe.ingredients %}
 		    <p>{{ ingredient }}</p>
         {% endfor %}   
@@ -32,8 +38,8 @@
 </div>
 
 <div class="row">
-	<div class="col s12">
-		<h3>Method</h3>
+    <div class="col s12">
+		<h5>Method</h5>
         {% for method_item in recipe.method %}
 		    <p>{{ method_item }}</p>
         {% endfor %}   
@@ -42,7 +48,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<h3>Equipment</h3>
+		<h5>Equipment</h5>
         {% for equipment_item in recipe.equipment %}
 		    <p>{{ equipment_item }}</p>
         {% endfor %}
@@ -51,7 +57,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<p>Need some baking equipment? Check out these cool tools!</p>
+		<h5>Need some baking equipment? Check out these cool tools!</h5>
         <div class="sponsored-image-group">
             <a href=""><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt=""></a>
             <a href=""><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" alt=""></a>
@@ -62,7 +68,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<h3>Temperature</h3>
+		<h5>Temperature</h5>
 		<p>
             {{ recipe.temperature.celsius }}˚C,  
             Fan {{ recipe.temperature.celsius_fan }}˚C, 
@@ -74,8 +80,8 @@
 
 <div class="row">
 	<div class="col s12">
-    	<h3>Cooking time</h3>
-		<p>{{ recipe.cooking_time }}</p>
+    	<h5>Cooking time</h5>
+		<p>{{ recipe.cooking_time }} minutes</p>
 	</div>
 </div>
 
@@ -87,7 +93,7 @@
 
 <div class="row">
 	<div class="col s12">
-		<h3>Reviews</h3>
+		<h5>Reviews</h5>
         {% for review in recipe.reviews %}
             {% if review.review_text is not defined %}
                 <p><em>No reviews for this recipe yet. Would you like to be the first to review it?</em></p>

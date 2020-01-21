@@ -134,8 +134,8 @@ def insert_recipe():
             "archived": False
         }
     )    
-    #return redirect(gitpod_url + 'recipe')
-    return redirect(url_for('recipe'))
+    return redirect(gitpod_url + 'recipes')
+    #return redirect(url_for('recipes'))
 
 @app.route('/view_recipe/<_id>')
 def view_recipe(_id):
@@ -232,16 +232,18 @@ def archive_recipe(_id):
     })
     
     # Refresh recipes page now that recipe has been archived and should no longer be displayed.
-    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
+    return redirect(url_for('recipes'))
+    #return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
 
 @app.route('/delete_recipe/<_id>')
 def delete_recipe(_id):
 
-    mongo.db.recipes.delete_one({"_id:": ObjectId(_id)})
+    result = mongo.db.recipes.delete_one({"_id:": ObjectId(_id)})
+    print("result = " + str(result))
 
     # Refresh recipes page now that recipe has been deleted and should no longer be displayed.
-    #return redirect(gitpod_url + 'recipes')
-    return redirect(url_for('recipes'))
+    return redirect(gitpod_url + 'recipes')
+    #return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

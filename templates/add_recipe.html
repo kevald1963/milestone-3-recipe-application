@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h4>Add a recipe</h4>
+<div class="row">
+	<div class="col s12">
+    	<h5>Add a recipe</h5>
+	</div>
+</div>
+
 <div class="row">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
 
@@ -46,12 +51,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s5 offset-s1 input_fields_wrap_ingredients">
+            <div class="col s8 offset-s1 input_fields_wrap_ingredients">
                 <input name="ingredients[]" type="text" class="field-long" required="required"/>
             </div>
-            <div class="col s4">
-                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add ingredient</button>
-                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove ingredient</button>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove</button>
             </div>        
         </div>        
 
@@ -64,19 +69,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s5 offset-s1 input_fields_wrap_method">
+            <div class="col s8 offset-s1 input_fields_wrap_method">
                 <input name="method[]" type="text" class="field-long" required="required"/>
             </div>
-            <div class="col s4">
-                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add method</button>
-                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove method</button>
+            <div class="col s8 offset-s1">
+                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add</button>
+                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove</button>
             </div>        
         </div>        
 
         <!-- TEMPERATURE -->
         <div class="row">
             <div class="input-field col s6">
-                <i class="material-icons prefix">wb_sunny</i>
+                <i class="material-icons prefix">power_settings_new</i>
                 <label for="icon_telephone">Temperature:</label>
                 <br>
             </div>
