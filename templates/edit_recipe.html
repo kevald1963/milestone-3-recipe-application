@@ -134,13 +134,14 @@
             </div>
         </div>
 
-        <!-- USER NAME / POSTED BY (READ ONLY) -->
+        <!-- USER NAME / POSTED BY / ETC (READ ONLY) -->
         <div class="row">
             <div class="col s12">
                 <label>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>
                 <input hidden id="date_posted" name="date_posted" type="text" class="validate" value="{{ recipe.date_posted }}"/> 
                 <input hidden id="posted_by" name="posted_by" type="text" class="validate" value="{{ recipe.posted_by }}"/> 
                 <input hidden id="popular_recipe" name="popular_recipe" type="text" class="validate" value="{{ recipe.popular_recipe }}"/> 
+                <input hidden id="archived" name="archived" type="text" class="validate" value="{{ recipe.archived }}"/> 
             </div>
         </div>
 
