@@ -236,13 +236,11 @@ def archive_recipe(_id):
 
 @app.route('/delete_recipe/<_id>')
 def delete_recipe(_id):
-    recipes = mongo.db.recipe_categories
 
-    recipes.delete_one({"_id:": ObjectId(_id)})
+    mongo.db.recipes.delete_one({"_id:": ObjectId(_id)})
 
     # Refresh recipes page now that recipe has been deleted and should no longer be displayed.
-    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
-
+    return redirect(gitpod_url + 'recipes')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
