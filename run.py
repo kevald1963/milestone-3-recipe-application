@@ -241,7 +241,7 @@ def delete_recipe(_id):
 
     # Refresh recipes page now that recipe has been deleted and should no longer be displayed.
     #return redirect(gitpod_url + 'recipes')
-    return redirect(url_for('recipe'))
+    return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
