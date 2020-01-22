@@ -218,8 +218,8 @@ def update_recipe(_id):
         "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
         "archived": string_to_boolean(request.form.get("archived"))
     })
-    #return redirect(gitpod_url + 'recipes')
-    return redirect(url_for('recipes'))
+    return redirect(gitpod_url + 'recipes')
+    #return redirect(url_for('recipes'))
 
 @app.route('/archive_recipe/<_id>')
 def archive_recipe(_id):
@@ -244,6 +244,20 @@ def delete_recipe(_id):
     # Refresh recipes page now that recipe has been deleted and should no longer be displayed.
     return redirect(gitpod_url + 'recipes')
     #return redirect(url_for('recipes'))
+
+# Show the 'Add recipe category' page.
+@app.route('/add_recipe_category')
+def add_recipe_category():
+    return render_template("add_recipe_category.html")
+
+# Insert the recipe category and return to the Category List page. -->
+@app.route('/insert_recipe_category', methods=["POST"])
+def insert_recipe_category():
+    categories = mongo.db.recipe_categories
+    category = {"category_name": request.form.get('category_name')}
+    categories.insert_one(category)
+    return redirect(gitpod_url + 'get_categories')
+    #return redirect(url_for('get_categories'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
