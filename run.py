@@ -1,6 +1,5 @@
 import os
 import math
-import datetime
 import pytz
 from datetime import datetime
 from flask import Flask, render_template, redirect, request, url_for
@@ -13,8 +12,6 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI_BAKING_HOT")
 app.config["MONGO_DBNAME"] = "baking_hot"
 
 mongo = PyMongo(app)
-
-gitpod_url = 'https://5000-cbeeb210-5c15-4820-9704-0260a4ea51d9.ws-eu01.gitpod.io/'
 
 # Retain this sanity check to ensure the test module is working!
 def check():
@@ -136,13 +133,12 @@ def insert_recipe():
             "temperature": temperature_object,
             "cooking_time": data["cooking_time"],
             "posted_by": data["username"],
-            "date_posted": datetime.datetime.utcnow(),
+            "date_posted": datetime.utcnow(),
             "popular_recipe": False,
             "archived": False
         }
     )    
-    return redirect(gitpod_url + 'recipes')
-    #return redirect(url_for('recipes'))
+    return redirect(url_for('recipes'))
 
 # Show the 'View recipe' page.
 # Invoked from 'Recipes' page.
@@ -226,12 +222,12 @@ def update_recipe(_id):
         "temperature": temperature_object,
         "cooking_time": request.form.get("cooking_time"),
         "posted_by": request.form.get("posted_by"),
-        "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
+    #    "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
+        "date_posted": datetime.utcnow(),
         "date_last_updated": datetime.utcnow(),
         "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
         "archived": string_to_boolean(request.form.get("archived"))
     })
-    #return redirect(gitpod_url + 'recipes')
     return redirect(url_for('recipes'))
 
 # Set the recipe to 'archived', so that it's hidden, and return to the 'Recipes' page.
@@ -258,8 +254,7 @@ def delete_recipe(_id):
     print("result = " + str(result))
 
     # Refresh recipes page now that recipe has been deleted and should no longer be displayed.
-    return redirect(gitpod_url + 'recipes')
-    #return redirect(url_for('recipes'))
+    return redirect(url_for('recipes'))
 
 # Show the 'Recipe category' page. 
 # Invoked primarily from the Nav bar.
@@ -280,8 +275,7 @@ def insert_recipe_category():
     recipe_categories = mongo.db.recipe_categories
     recipe_category = {"category_name": request.form.get('category_name')}
     recipe_categories.insert_one(recipe_category)
-    return redirect(gitpod_url + 'recipe_categories')
-    #return redirect(url_for('recipe_categories'))
+    return redirect(url_for('recipe_categories'))
 
 # Show the 'Edit recipe category' page.
 # Invoked from 'Recipe category' page.
@@ -296,18 +290,17 @@ def update_recipe_category(recipe_category_id):
     mongo.db.recipe_categories.update(
         {'_id': ObjectId(recipe_category_id)},
         {'category_name': request.form.get('category_name')})
-    return redirect(gitpod_url + 'recipe_categories')
-    #return redirect(url_for('recipe_categories'))
+    return redirect(url_for('recipe_categories'))
 
 # Delete the recipe category and return to the 'Recipe categories' page.
 # Invoked from 'Recipe category' page.
 @app.route('/delete_recipe_category/<recipe_category_id>')
 def delete_recipe_category(recipe_category_id):
     mongo.db.recipe_categories.delete_one({'_id': ObjectId(recipe_category_id)})
-    return redirect(gitpod_url + 'recipe_categories')
-    #return redirect(url_for('recipe_categories'))
+    return redirect(url_for('recipe_categories'))
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=os.environ.get('PORT'),
+    app.run(host=os.environ.get('IP', "0.0.0.0"),
+            port=os.environ.get('PORT', "5000"),
             debug=True)
+
