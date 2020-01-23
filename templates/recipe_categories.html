@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+	<div class="col s12">
+        <h4>Recipe categories</h4>
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for recipe_category in recipe_categories %}
+            <li>
+                <div class="collapsible-header">
+                    <!-- DELETE and EDIT buttons for category -->
+                    <a href="{{ url_for('delete_recipe_category', category_id = category._id) }}" class="waves-effect waves-light btn btn_small">Delete</a>
+                    <a href="{{ url_for('edit_recipe_category', category_id = category._id) }}" class="waves-effect waves-light btn btn_small blue">Edit</a>              
+                    <div>
+                        <strong>{{recipe_category.category_name}}</strong>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col s12">
+        <a href="{{ url_for('add_recipe_category') }}" class="waves-effect waves-light btn"><i class="material-icons right">playlist_add</i>Add Category</a>
+    </div>
+</div>
+
+{% endblock %}

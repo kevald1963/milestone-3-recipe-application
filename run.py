@@ -256,8 +256,8 @@ def insert_recipe_category():
     categories = mongo.db.recipe_categories
     category = {"category_name": request.form.get('category_name')}
     categories.insert_one(category)
-    return redirect(gitpod_url + 'get_categories')
-    #return redirect(url_for('get_categories'))
+    return redirect(gitpod_url + 'home')
+    #return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
