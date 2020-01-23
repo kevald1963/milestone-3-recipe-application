@@ -60,10 +60,6 @@
                     <input name="ingredients[]" type="text" class="field-long" required="required" value="{{ ingredient }}" disabled/>
                 {% endfor %}
             </div>
-            <div class="col s8 offset-s1">
-                <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button" disabled>Add</button>
-                <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button" disabled>Remove</button>
-            </div>        
         </div>        
 
         <!-- METHOD -->
@@ -80,10 +76,6 @@
                     <input name="method[]" type="text" class="field-long" required="required" value="{{ method }}" disabled/>
                 {% endfor %}
             </div>
-            <div class="col s8 offset-s1">
-                <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button" disabled>Add</button>
-                <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button" disabled>Remove</button>
-            </div>        
         </div>        
 
         <!-- TEMPERATURE -->
@@ -96,38 +88,15 @@
         </div>
         <div class="row">
             <div class="col s12 offset-s1">
-                <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
-                <div class="row">
-                    <div class="col s1 temperature-input">
-                        <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required" value ="{{ temperature_value }}" disabled/>
-                    </div>        
-                    <div class="col s10">
-                        {% if user_temperature_type == 0 %}
-                            {% set celsius_checked = "checked" %}
-                        {% endif %}
-                        {% if user_temperature_type == 1 %}
-                            {% set celsius_fan_checked = "checked" %}
-                        {% endif %}
-                        {% if user_temperature_type == 2 %}
-                            {% set fahrenheit_checked = "checked" %}
-                        {% endif %}
-                        {% if user_temperature_type == 3 %}
-                            {% set gas_mark_checked = "checked" %}
-                        {% endif %}
-                        <!-- Note that 'name' attribute below must be identical to make the radio buttons -->
-                        <!-- act as a group i.e. only one is selectable at a time. -->
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" {{ celsius_checked }} disabled/>
-                        <label for="celsius">°C</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio" {{ celsius_fan_checked }} disabled/>
-                        <label for="celsius_fan">°C (Fan)</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }} disabled/>
-                        <label for="fahrenheit">°F</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio" {{ gas_mark_checked }} disabled/>
-                        <label for="gas_mark">Gas Mark</label>
-                    </div>        
-                </div>        
+                <p disabled>
+                    {{ recipe.temperature.celsius }}˚C,  
+                    Fan {{ recipe.temperature.celsius_fan }}˚C, 
+                    {{ recipe.temperature.fahrenheit }}˚F, 
+                    Gas Mark {{ recipe.temperature.gas_mark }}
+                </p>
             </div>
         </div>
+
 
         <!-- COOKING TIME -->
         <div class="row">
