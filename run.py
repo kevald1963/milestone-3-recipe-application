@@ -286,12 +286,12 @@ def insert_recipe_category():
 # Show the 'Edit recipe category' page.
 # Invoked from 'Recipe category' page.
 @app.route('/edit_recipe_category/<recipe_category_id>')
-def edit_category(recipe_category_id):
+def edit_recipe_category(recipe_category_id):
     return render_template("edit_recipe_category.html", recipe_category = mongo.db.recipe_categories.find_one({"_id": ObjectId(recipe_category_id)}))
 
 # Update the recipe category and return to the 'Recipe categories' page.
 # Invoked from 'Edit recipe category' page.
-@app.route('/update_recipe_category/<recipe_category_id>', methods=['POST'])
+@app.route('/update_recipe_category/<recipe_category_id>', methods=["POST"])
 def update_recipe_category(recipe_category_id):
     mongo.db.recipe_categories.update(
         {'_id': ObjectId(recipe_category_id)},

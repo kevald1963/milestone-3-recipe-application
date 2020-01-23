@@ -11,29 +11,33 @@
             <a href="https://www.dovesfarm.co.uk/products/quick-yeast-1x125g"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF_Yeast.jpg" alt=""></a>
             <a href="https://www.bakerybits.co.uk/chicago-metallic-professional-sheet-pans.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3462_7_7.jpg" alt=""></a>
             <a href="https://www.lakeland.co.uk/32250/Children%E2%80%99s-10pc-Baking-Gift-Set-with-Bowl%2C-Whisk-and-Spatula-"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32250_2?$325$" alt=""></a>
-            
         </div>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col s12">
-        <h4>Recipe categories</h4>
-        <ul class="collapsible" data-collapsible="accordion">
-            {% for recipe_category in recipe_categories %}
-            <li>
-                <div class="collapsible-header">
+    	<h5>Recipe categories</h5>
+	</div>
+</div>
+
+<div class="row">
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for recipe_category in recipe_categories %}
+        <li>
+            <div class="collapsible-header">
+                <div class="col s3">
                     <!-- DELETE and EDIT buttons for category -->
-                    <a href="{{ url_for('delete_recipe_category', recipe_category_id = recipe_category._id) }}" class="waves-effect waves-light btn btn_small">Delete</a>
-                    <a href="{{ url_for('edit_recipe_category', recipe_category_id = recipe_category._id) }}" class="waves-effect waves-light btn btn_small blue">Edit</a>              
-                    <div>
-                        <strong>{{recipe_category.category_name}}</strong>
-                    </div>
+                    <a href="{{ url_for('edit_recipe_category', recipe_category_id=recipe_category._id) }}" class="waves-effect waves-light btn btn_small blue">Edit</a>              
+                    <a href="{{ url_for('delete_recipe_category', recipe_category_id=recipe_category._id) }}" class="waves-effect waves-light btn btn_small red">Delete</a>
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+                <div class="category_header col s9">
+                    <strong>{{ recipe_category.category_name }}</strong>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 <div class="row">
