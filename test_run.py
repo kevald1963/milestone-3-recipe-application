@@ -3,8 +3,7 @@ import run
 
 class TestRun(unittest.TestCase):
 
-    # Test that the test module is working!
-    def test_is_this_thing_on(self):
+    def test_the_test_module_is_working(self):
         self.assertEqual(1, run.check())
 
     def test_string_to_boolean_true(self):
