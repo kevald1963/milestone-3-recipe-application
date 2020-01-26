@@ -157,8 +157,7 @@ def update_recipe(_id):
         "temperature": temperature_object,
         "cooking_time": request.form.get("cooking_time"),
         "posted_by": request.form.get("posted_by"),
-    #    "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S'),
-        "date_posted": datetime.utcnow(),
+        "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S.%f'),
         "date_last_updated": datetime.utcnow(),
         "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
         "archived": string_to_boolean(request.form.get("archived"))
