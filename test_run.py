@@ -4,7 +4,7 @@ import run
 class TestRun(unittest.TestCase):
 
     def test_the_test_module_is_working(self):
-        self.assertEqual(1, run.check())
+        self.assertEqual(1, run.test_checker())
 
     def test_string_to_boolean_true(self):
         self.assertEqual(True, run.string_to_boolean("True"))

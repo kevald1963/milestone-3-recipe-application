@@ -29,8 +29,8 @@
                 </div>
                 <div class="col s7">
                     <!-- VIEW, EDIT, HIDE and DELETE buttons -->
-                    <a href="{{ url_for('view_recipe', _id=recipe._id) }}" class="waves-effect waves-light btn btn_small blue">View</a>
-                    <a href="{{ url_for('edit_recipe', _id=recipe._id) }}" class="waves-effect waves-light btn btn_small blue">Update</a>
+                    <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='view') }}" class="waves-effect waves-light btn btn_small blue">View</a>
+                    <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='edit') }}" class="waves-effect waves-light btn btn_small blue">Update</a>
                     <a href="{{ url_for('archive_recipe', _id=recipe._id) }}" class="hide-recipe-button waves-effect waves-light btn btn_small blue">Hide</a>
                     <a href="{{ url_for('delete_recipe', _id=recipe._id) }}" class="delete-recipe-button waves-effect waves-light btn btn_small red">Delete</a>
                 </div>

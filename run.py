@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 
-from utils.general import string_to_boolean, roundup_nearest_ten, roundup_nearest_one
+from utils.general import test_checker, string_to_boolean, roundup_nearest_ten, roundup_nearest_one
 from utils.temperature_conversions import compute_temperature_settings, create_temperature_object, convert_from_celsius, convert_from_celsius_fan, convert_from_fahrenheit, convert_from_gas_mark
 
 app = Flask(__name__)
@@ -14,14 +14,6 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI_BAKING_HOT")
 app.config["MONGO_DBNAME"] = "baking_hot"
 
 mongo = PyMongo(app)
-
-# Sanity check to ensure the test module is working!
-@app.route('/status')
-def status():
-    return Response(200)
-
-def check():
-    return 1
 
 # Show the 'Home' page. 
 @app.route('/')
@@ -75,61 +67,38 @@ def insert_recipe():
     )    
     return redirect(url_for('recipes'))
 
-# Show the 'View recipe' page.
+# Show either the 'View or Edit recipe' page.
 # Invoked from 'Recipes' page.
-@app.route('/view_recipe/<_id>')
-def view_recipe(_id):
-    _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
+@app.route('/view_or_edit_recipe/<_id>/<mode>')
+def view_or_edit_recipe(_id, mode):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
 
     # The user_temperature_type variable determines the type the user originally selected
     # when adding the recipe to the database i.e. celsius, celsius fan, fahrenheit or gas mark. This 
     # is need when redisplaying the temperature for update because only one type is entered by the 
     # user when adding the recipe. The rest are derived by formulae.
-    _user_temperature_type = _recipe["temperature"]["user_temperature_type"]
+    user_temperature_type = recipe["temperature"]["user_temperature_type"]
 
-    if _user_temperature_type == 0:
-        _temperature_value = _recipe["temperature"]["celsius"]
+    if user_temperature_type == 0:
+        temperature_value = recipe["temperature"]["celsius"]
 
-    if _user_temperature_type == 1:
-        _temperature_value = _recipe["temperature"]["celsius_fan"]
+    if user_temperature_type == 1:
+        temperature_value = recipe["temperature"]["celsius_fan"]
 
-    if _user_temperature_type == 2:
-        _temperature_value = _recipe["temperature"]["fahrenheit"]
+    if user_temperature_type == 2:
+        temperature_value = recipe["temperature"]["fahrenheit"]
 
-    if _user_temperature_type == 3:
-        _temperature_value = _recipe["temperature"]["gas_mark"]
+    if user_temperature_type == 3:
+        temperature_value = _recipe["temperature"]["gas_mark"]
 
-    _recipe_categories = mongo.db.recipe_categories.find()
-    recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
-    return render_template("view_recipe.html", recipe = _recipe, user_temperature_type = _user_temperature_type, temperature_value = _temperature_value, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
+    recipe_categories = mongo.db.recipe_categories.find()
+    recipe_category_list = [recipe_category for recipe_category in recipe_categories]
+    if mode == "view":
+        template = "view_recipe.html"
+    if mode == "edit":
+        template = "edit_recipe.html"
 
-# Show the 'Edit recipe' page.
-# Invoked from 'Recipes' page.
-@app.route('/edit_recipe/<_id>')
-def edit_recipe(_id):
-    _recipe = mongo.db.recipes.find_one({"_id": ObjectId(_id)})
-
-    # The user_temperature_type variable determines the type the user originally selected
-    # when adding the recipe to the database i.e. celsius, celsius fan, fahrenheit or gas mark. This 
-    # is need when redisplaying the temperature for update because only one type is entered by the 
-    # user when adding the recipe. The rest are derived by formulae.
-    _user_temperature_type = _recipe["temperature"]["user_temperature_type"]
-
-    if _user_temperature_type == 0:
-        _temperature_value = _recipe["temperature"]["celsius"]
-
-    if _user_temperature_type == 1:
-        _temperature_value = _recipe["temperature"]["celsius_fan"]
-
-    if _user_temperature_type == 2:
-        _temperature_value = _recipe["temperature"]["fahrenheit"]
-
-    if _user_temperature_type == 3:
-        _temperature_value = _recipe["temperature"]["gas_mark"]
-
-    _recipe_categories = mongo.db.recipe_categories.find()
-    recipe_category_list = [recipe_category for recipe_category in _recipe_categories]
-    return render_template("edit_recipe.html", recipe = _recipe, user_temperature_type = _user_temperature_type, temperature_value = _temperature_value, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
+    return render_template(template, recipe = recipe, user_temperature_type = user_temperature_type, temperature_value = temperature_value, recipe_categories = recipe_category_list, usernames=list(mongo.db.users.find()))
 
 # Update the recipe and return to the 'Recipes' page.
 # Invoked from 'Edit recipe' page.

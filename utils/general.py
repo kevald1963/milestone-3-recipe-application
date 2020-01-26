@@ -1,5 +1,9 @@
 import math
 
+# Sanity check to ensure the test module is working!
+def test_checker():
+    return 1
+
 def string_to_boolean(boolean_string):
     if boolean_string == "True":
          return True
