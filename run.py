@@ -42,7 +42,8 @@ def insert_recipe():
     # Multi-line input elements need converted to a list before saving to MongoDB.
     ingredients = request.form.getlist("ingredients[]")
     method = request.form.getlist("method[]")
-
+    equipment = request.form.getlist("equipment[]")
+    
     temperature_value = int(request.form.get("temperature_value"))
     temperature_type = request.form.get("temperature_type")
     
@@ -57,6 +58,7 @@ def insert_recipe():
             "description": data["description"],
             "ingredients": ingredients,
             "method": method,
+            "equipment": equipment,
             "temperature": temperature_object,
             "cooking_time": data["cooking_time"],
             "posted_by": data["username"],
@@ -67,7 +69,8 @@ def insert_recipe():
     )    
     return redirect(url_for('recipes'))
 
-# Show either the 'View or Edit recipe' page.
+# Show either the 'View or Edit recipe' page. These are differentiated by the 
+# mode argument passed from the appropriate page. 
 # Invoked from 'Recipes' page.
 @app.route('/view_or_edit_recipe/<_id>/<mode>')
 def view_or_edit_recipe(_id, mode):
@@ -89,7 +92,7 @@ def view_or_edit_recipe(_id, mode):
         temperature_value = recipe["temperature"]["fahrenheit"]
 
     if user_temperature_type == 3:
-        temperature_value = _recipe["temperature"]["gas_mark"]
+        temperature_value = recipe["temperature"]["gas_mark"]
 
     recipe_categories = mongo.db.recipe_categories.find()
     recipe_category_list = [recipe_category for recipe_category in recipe_categories]
@@ -109,6 +112,7 @@ def update_recipe(_id):
     # Multi-line input elements need converted to a list before saving to MongoDB.
     ingredients = request.form.getlist("ingredients[]")
     method = request.form.getlist("method[]")
+    equipment = request.form.getlist("equipment[]")
 
     temperature_value = int(request.form.get("temperature_value"))
     temperature_type = request.form.get("temperature_type")
@@ -123,6 +127,7 @@ def update_recipe(_id):
         "description": request.form.get("description"),
         "ingredients": ingredients,
         "method": method,
+        "equipment": equipment,
         "temperature": temperature_object,
         "cooking_time": request.form.get("cooking_time"),
         "posted_by": request.form.get("posted_by"),

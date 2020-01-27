@@ -58,19 +58,27 @@
         });
     </script>
 
+    <!-- Used for recipe category Select. Forces the user to select an option before being able to submit the form.. -->
     <script> 
         $("select[required]").css({display:"block", height:0, padding:0, width:0, position:'absolute'});
     </script>
 
+    <!-- Allow adding and removing of input lines for multi-line recipe fields Ingredients, Method and Equipment. -->
     <script>
         $(document).ready(function() {
             var max_fields                = 12;
+            
             var wrapper_ingredients       = $(".input_fields_wrap_ingredients"); 
             var wrapper_method            = $(".input_fields_wrap_method"); 
+            var wrapper_equipment         = $(".input_fields_wrap_equipment"); 
+            
             var add_button_ingredients    = $(".add_field_button_ingredients");
             var add_button_method         = $(".add_field_button_method");
+            var add_button_equipment      = $(".add_field_button_equipment");
+
             var remove_button_ingredients = $(".remove_field_button_ingredients");
             var remove_button_method      = $(".remove_field_button_method");
+            var remove_button_equipment   = $(".remove_field_button_equipment");
 
             $(add_button_ingredients).click(function(e) {
                 e.preventDefault();
@@ -104,6 +112,23 @@
                     wrapper_method[0].children[total_fields_method - 1].remove();
                 }
             });
+
+            $(add_button_equipment).click(function(e) {
+                e.preventDefault();
+                var total_fields_equipment = wrapper_equipment[0].children.length;
+                if(total_fields_equipment < max_fields) {
+                    $(wrapper_equipment).append('<input name="equipment[]" type="text" class="field-long"/>');
+                }
+            });
+
+            $(remove_button_equipment).click(function(e) {
+                e.preventDefault();
+                var total_fields_equipment = wrapper_equipment[0].children.length;
+                if(total_fields_equipment > 1) {
+                    wrapper_equipment[0].children[total_fields_equipment - 1].remove();
+                }
+            });
+
         });
     </script>
 
