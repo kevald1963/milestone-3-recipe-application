@@ -4,11 +4,12 @@
 <div class="row">
 	<div class="col s12">
     	<h5>Update a recipe</h5>
+        <p>* = Required</p>
 	</div>
 </div>
 
 <div class="row">
-    <form action="{{ url_for('update_recipe', _id=recipe._id) }}" method="POST" class="col s12">
+    <form action="{{ url_for('update_recipe', _id=recipe._id) }}" method="POST" class="col s12" id="recipe_form">
         <!-- RECIPE CATEGORY SELECT -->
         <div class="row">
             <div class="input-field col s6">
@@ -23,7 +24,7 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                <label data-error="Select an option">Recipe category</label>
+                <label data-error="Select an option">Recipe category *</label>
             </div>
         </div>
         
@@ -31,7 +32,7 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix">assignment</i>
-                <label for="icon_prefix">Recipe title</label>
+                <label for="icon_prefix">Recipe title *</label>
                 <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}"/>
             </div>
         </div>
@@ -49,7 +50,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">shopping_basket</i>
-                <label for="icon_telephone">Ingredients list:</label>
+                <label for="icon_telephone">Ingredients list *</label>
                 <br>
             </div>
         </div>
@@ -69,7 +70,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">list</i>
-                <label for="icon_telephone">Method list:</label>
+                <label for="icon_telephone">Method list *</label>
                 <br>
             </div>
         </div>
@@ -89,7 +90,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">restaurant_menu</i>
-                <label for="icon_telephone">Equipment list:</label>
+                <label for="icon_telephone">Equipment list *</label>
                 <br>
             </div>
         </div>
@@ -110,13 +111,13 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix">power_settings_new</i>
-                <label for="icon_telephone">Temperature:</label>
+                <label for="icon_telephone">Temperature *</label>
                 <br>
             </div>
         </div>
         <div class="row">
             <div class="col s12 offset-s1">
-                <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
+                <p>Please select just one oven temperature setting (other settings will be shown automatically when viewing recipe).</p>
                 <div class="row">
                     <div class="col s1 temperature-input">
                         <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required" value ="{{ temperature_value }}"/>
@@ -136,14 +137,14 @@
                         {% endif %}
                         <!-- Note that 'name' attribute below must be identical to make the radio buttons -->
                         <!-- act as a group i.e. only one is selectable at a time. -->
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" {{ celsius_checked }}/>
-                        <label for="celsius">°C</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio" {{ celsius_fan_checked }}/>
-                        <label for="celsius_fan">°C (Fan)</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }}/>
-                        <label for="fahrenheit">°F</label>
-                        <input class="temperature-radio-button with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio" {{ gas_mark_checked }}/>
-                        <label for="gas_mark">Gas Mark</label>
+                        <input class="with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" {{ celsius_checked }}/>
+                        <label for="celsius" style="margin-right:25px;">°C</label>
+                        <input class="with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio" {{ celsius_fan_checked }}/>
+                        <label for="celsius_fan" style="margin-right:25px;">°C (Fan)</label>
+                        <input class="with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio" {{ fahrenheit_checked }}/>
+                        <label for="fahrenheit" style="margin-right:25px;">°F</label>
+                        <input class="with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio" {{ gas_mark_checked }}/>
+                        <label for="gas_mark" style="margin-right:25px;">Gas Mark</label>
                     </div>        
                 </div>        
             </div>
@@ -151,14 +152,14 @@
 
         <!-- COOKING TIME -->
         <div class="row">
-            <div class="input-field col s2">
+            <div class="input-field col s8">
                 <i class="material-icons prefix">access_time</i>
-                <label for="icon_prefix">Cooking time (minutes)</label>
+                <label for="icon_prefix">Cooking time (minutes) *</label>
                 <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required" value="{{ recipe.cooking_time }}"/> 
             </div>
         </div>
 
-        <!-- USER NAME / POSTED BY / ETC (READ ONLY) -->
+        <!-- USER NAME / POSTED BY / UNUSED FIELDS / ETC (READ ONLY) -->
         <div class="row">
             <div class="col s12">
                 <label>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</label>

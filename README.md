@@ -147,9 +147,10 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ## Credits
 
+- Maximum temperatures for domestic ovens [The Engineering Tool Box](https://www.engineeringtoolbox.com/gas-cookers-d_130.html)
+
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
-
 
 ### Media
 - The photos used in this site were obtained from ...

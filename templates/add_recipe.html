@@ -4,11 +4,12 @@
 <div class="row">
 	<div class="col s12">
     	<h5>Add a recipe</h5>
+        <p>* = Required</p>
 	</div>
 </div>
 
 <div class="row">
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12" id="recipe_form">
 
         <!-- RECIPE TYPE -->
         <div class="row">
@@ -20,7 +21,7 @@
                         <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
                     {% endfor %}
                 </select>
-                <label data-error="Select an option">Recipe category</label>
+                <label data-error="Select an option">Recipe category *</label>
             </div>
         </div>
         
@@ -46,7 +47,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">subject</i>
-                <label for="icon_telephone">Ingredients list:</label>
+                <label for="icon_telephone">Ingredients list *</label>
                 <br>
             </div>
         </div>
@@ -64,7 +65,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">subject</i>
-                <label for="icon_telephone">Method list:</label>
+                <label for="icon_telephone">Method list *</label>
                 <br>
             </div>
         </div>
@@ -82,7 +83,7 @@
         <div class="row">
             <div class="input-field col s4">
                 <i class="material-icons prefix">restaurant_menu</i>
-                <label for="icon_telephone">Equipment list:</label>
+                <label for="icon_telephone">Equipment list *</label>
                 <br>
             </div>
         </div>
@@ -100,13 +101,13 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix">power_settings_new</i>
-                <label for="icon_telephone">Temperature:</label>
+                <label for="icon_telephone">Temperature *</label>
                 <br>
             </div>
         </div>
         <div class="row">
             <div class="col s12 offset-s1">
-                <p>Please select just one oven temperature setting (other settings will be calculated automatically).</p>
+                <p>Please select just one oven temperature setting (other settings will be shown automatically when viewing recipe).</p>
                 <div class="row">
                     <div class="col s1 temperature-input">
                         <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required">
@@ -115,13 +116,13 @@
                         <!-- Note that 'name' attribute below must be identical for the radio buttons -->
                         <!-- to act as a group i.e. only one can be selected at a time.  -->
                         <input class="with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" checked/>
-                        <label for="celsius">°C</label>
+                        <label for="celsius" style="margin-right:25px;">°C</label>
                         <input class="with-gap" name="temperature_type" id="celsius_fan" value="celsius_fan" type="radio"/>
-                        <label for="celsius-fan">°C (Fan)</label>
+                        <label for="celsius_fan" style="margin-right:25px;">°C (Fan)</label>
                         <input class="with-gap" name="temperature_type" id="fahrenheit" value="fahrenheit" type="radio"/>
-                        <label for="fahrenheit">°F</label>
+                        <label for="fahrenheit" style="margin-right:25px;">°F</label>
                         <input class="with-gap" name="temperature_type" id="gas_mark" value="gas_mark" type="radio"/>
-                        <label for="gas-mark">Gas Mark</label>
+                        <label for="gas_mark" style="margin-right:25px;">Gas Mark</label>
                     </div>        
                 </div>        
             </div>
@@ -129,9 +130,9 @@
 
         <!-- COOKING TIME -->
         <div class="row">
-            <div class="input-field col s2">
+            <div class="input-field col s8">
                 <i class="material-icons prefix">assignment</i>
-                <label for="icon_prefix">Cooking time (minutes)</label>
+                <label for="icon_prefix">Cooking time (minutes) *</label>
                 <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required">
             </div>
         </div>
@@ -146,7 +147,7 @@
                         <option id="username" value="{{ user.username }}">{{ user.username }}</option>
                     {% endfor %}
                 </select>
-                <label data-error="Select an option">User name</label>
+                <label data-error="Select an option">User name *</label>
             </div>
         </div>
 
