@@ -59,9 +59,14 @@
     </script>
 
     <script> 
-        // When submit button is clicked, check the temperature value is more than zero but does not exceed a 
-        // sensible maximum for each temperature type. User will be alerted to any failures and the form will
-        // not be in such cases. These checks are made when adding or updating a recipe.
+        // General numerical validation for temperature value field. These checks are made when adding or updating
+        // a recipe. Note that the cooking time field is not numerically validated because values such '40-45' (minutes) 
+        // are allowable. 
+        //
+        // When the submit button is clicked, if the temperature value is numeric then check that it is more than zero
+        // but not greater than a sensible maximum for its associated temperature type. Any failure will raise an
+        // alert and the form will not be updated. 
+        
         $('#recipe_form').submit(function(e) {
             var max_celsius = 250;
             var max_celsius_fan = 230;
@@ -69,26 +74,35 @@
             var max_gas_mark = 9;
             var temperature_value = $('#temperature_value').val();
             var temperature_type = $('input[name="temperature_type"]:checked').val();
+            
+            function validationError() {
+                $('#temperature_value').focus();
+                return e.preventDefault(); //This will prevent the default submit.
+            };
 
+            if (!$.isNumeric(temperature_value)) {
+                alert("Temperature value must be numeric!");
+                validationError();
+            };
             if (temperature_value <= 0) {
                 alert("Temperature value must be more than zero.");
-                return e.preventDefault(); //This will prevent the default submit.
+                validationError();
             };
             if ((temperature_value > max_celsius) && (temperature_type == 'celsius')) {
                 alert("Celsius temperature should not be more than " + max_celsius + " ˚C!");
-                return e.preventDefault(); //This will prevent the default submit.
+                validationError();
             };
             if ((temperature_value > max_celsius_fan) && (temperature_type == 'celsius_fan')) {
                 alert("Celsius fan temperature should not be more than " + max_celsius_fan + " ˚C!");
-                return e.preventDefault(); //This will prevent the default submit.
+                validationError();
             };
             if ((temperature_value > max_fahrenheit) && (temperature_type == 'fahrenheit')) {
                 alert("Fahrenheit temperature should not be more than " + max_fahrenheit + " ˚F!");
-                return e.preventDefault(); //This will prevent the default submit.
+                validationError();
             };
             if ((temperature_value > max_gas_mark) && (temperature_type == 'gas_mark')) {
                 alert("Gas Mark setting should not be more than " + max_gas_mark + " !");
-                return e.preventDefault(); //This will prevent the default submit.
+                validationError();
             };
         });
     </script>

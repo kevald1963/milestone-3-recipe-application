@@ -44,7 +44,7 @@ def insert_recipe():
     method = request.form.getlist("method[]")
     equipment = request.form.getlist("equipment[]")
     
-    temperature_value = int(request.form.get("temperature_value"))
+    temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
     temperature_type = request.form.get("temperature_type")
     
     # Call temperature conversion functions to populate the temperature object.
@@ -114,7 +114,7 @@ def update_recipe(_id):
     method = request.form.getlist("method[]")
     equipment = request.form.getlist("equipment[]")
 
-    temperature_value = int(request.form.get("temperature_value"))
+    temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
     temperature_type = request.form.get("temperature_type")
  
     # Call temperature conversion functions to populate the temperature object before update.

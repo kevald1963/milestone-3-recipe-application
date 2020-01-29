@@ -17,5 +17,3 @@ def roundup_nearest_ten(x):
 
 def roundup_nearest_one(x):
     return int(math.ceil(x))
-
-
