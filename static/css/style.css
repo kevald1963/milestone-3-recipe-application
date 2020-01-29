@@ -4,6 +4,13 @@ h3 {
     margin-bottom: 0;
 }
 
+.about-site {
+    width:50%;
+    margin:2px 0;
+    background-color:purple;
+    color: white;
+}
+
 .input_fields_wrap {
     max-width: 350px;
 }
