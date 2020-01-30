@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700');
 
-h3 {
+.row.margin-bottom-override {
     margin-bottom: 0;
 }
 
@@ -31,15 +31,46 @@ h3 {
     margin-top: 5px;
 }
 
-.newsletter-panel {
-    margin-top: 70px;
+.ingredients-panel {
+    border-radius: 15px;    
+    margin-left: 30px;
+    margin-top: 0px;
     height: auto;
+    box-shadow: 0 0 4px 0px black;
+    background-color: #ee6e73;      /* Matches Materialize Navbar colour. */
+    color: white;
+}
+
+.equipment-panel {
+    background-color: #ee6e73;      /* Matches Materialize Navbar colour. */
+    color: white;
+}
+
+.equipment-promotion {
+    background-color:rebeccapurple;
+    color: whitesmoke;
+}
+
+.newsletter-panel {
+    border-radius: 15px;    
+    margin: 10px;
+    margin-top: 0px;
     box-shadow: 0 0 4px 0px black;
     background-color:rebeccapurple;
     color: whitesmoke;
 }
+
+.newsletter-text {
+    text-align: center;
+}
+
+.newsletter-text a {
+    color: whitesmoke;
+}
+
 .popular-image {
-    width: 80%;
+    border-radius: 15px;    
+    width: 100%;
     height: auto;
     box-shadow: 0 0 4px 0px black;
 }
@@ -49,11 +80,29 @@ h3 {
     height: auto;
     box-shadow: 0 0 4px 0px black;
 }
-sponsored-image-group
+
 .temperature-input {
     padding: 0px;
     color: grey;
 }
 
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .ingredients-panel, .newsletter-panel, .equipment-panel {
+        border-radius: 0;
+        margin: 0;
+        box-shadow: none
+    }
+
+    .popular-image {
+        margin-top: 5px;
+        float: none;
+        border-radius: 0;
+    }
+
+    .padding-override {
+        padding: 0;
+    }
+}
 
 

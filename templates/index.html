@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col s12 about-site">
         <p><strong>
-            Welcome to Baking Hot!, the No. 1 spot for all your baking recipes - bread, scones, cakes, savoury pies, 
+            Welcome to Baking Hot!, the Number 1 spot for all your baking recipes - bread, scones, cakes, savoury pies, 
             fruit pies, pasties...even Yorkshire Pudding. Check out our recipes and get baking!
             You can even upload your own recipes here to keep them all in one place. You can also share them with others 
             as you please.
@@ -33,39 +33,32 @@
 </div>
 
 <div class="row">
-	<div class="col s6">
+	<div class="col s12 m6 l6">
 		<p>{{ recipe.description }}</p>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col s12 m4 l4">
-        <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
-	</div>
-	<div class="col s12 m3 l3">
+	<div class="col s12 m3 l3 ingredients-panel">
 		<h5>Ingredients</h5>
         {% for ingredient in recipe.ingredients %}
 		    <p>{{ ingredient }}</p>
         {% endfor %}   
 	</div>
+	<div class="col s12 m4 l4 padding-override">
+        <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
+	</div>
 	<div class="col s12 m3 l3 newsletter-panel">
         <p><strong>
-            Subscribe to our weekly FREE newsletter and stay up to date with all our latest recipes, plus  
-            loads of hints and tips for successful baking. Sign up now!
+            Subscribe to our weekly FREE newsletter to stay up to date with all our latest recipes, plus  
+            receive loads of hints and tips from the experts for successful baking.
+            <div class="newsletter-text">
+                <h5><a href=""><i class="material-icons">create</i> Sign up now! <i class="material-icons">create</i></a></h5>
+        	</div>
         </strong></p>
 	</div>
 </div>
 
-<!--
-<div class="row">
-	<div class="col s12">
-		<h5>Ingredients</h5>
-        {% for ingredient in recipe.ingredients %}
-		    <p>{{ ingredient }}</p>
-        {% endfor %}   
-	</div>
-</div>
--->
 <div class="row">
     <div class="col s12">
 		<h5>Method</h5>
@@ -75,8 +68,8 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col s12">
+<div class="row margin-bottom-override">
+	<div class="col s12 equipment-panel">
 		<h5>Equipment</h5>
         {% for equipment_item in recipe.equipment %}
 		    <p>{{ equipment_item }}</p>
@@ -85,8 +78,13 @@
 </div>
 
 <div class="row">
+	<div class="col s12 equipment-promotion">
+	   <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
+    </div>    
+</div>    
+
+<div class="row">
 	<div class="col s12">
-		<p><strong><em>Need some baking equipment? Check out these cool tools!</em></strong></p>
         <div class="sponsored-image-group">
             <a href="https://www.bakerybits.co.uk/stainless-mixing-bowl-rolled-top-30cm-or-35cm-diameter.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt="Stainless mixing bBowl rolled top, 30cm or 35cm diameter."></a>
             <a href="https://www.lakeland.co.uk/5751/Heavy-Duty-Double-Oven-Glove"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/5751_1?$325$" alt="Heavy duty thick double oven gloves."></a>
@@ -94,7 +92,6 @@
             <a href="https://www.lakeland.co.uk/14286/Lakeland-Digital-Kitchen-Weighing-Scale"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/14286_2?$325$" alt="Lakeland stainless steel digital kitchen scales."></a>
             <a href="https://www.lakeland.co.uk/70261/Pyrex-0-5L-Measuring-Jug"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/70261_1?$325$" alt="Pyrex measuring jug 0.5 litre."></a>
             <a href="https://www.lakeland.co.uk/32210/Mason-Cash-Cane-Mixing-Bowl-4L"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" alt="Mason cash cane mixing bowl 4 litres."></a>
-        
         </div>
 	</div>
 </div>
