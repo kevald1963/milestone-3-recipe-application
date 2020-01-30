@@ -19,9 +19,11 @@
     margin:2px 0;
 }
 
-.btn-small {
+.btn_small {
+    background-color: rebeccapurple;
+    color: whitesmoke;
     height: 24px;
-    width: 60px;
+    width: 100px;
     line-height: 24px;
     margin: 5px 5px 5px 5px;
     padding: 0 0.5em;
@@ -100,9 +102,6 @@
         border-radius: 0;
     }
 
-    .padding-override {
-        padding: 0;
-    }
 }
 
 
