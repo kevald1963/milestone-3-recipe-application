@@ -39,23 +39,29 @@
 </div>
 
 <div class="row">
-	<div class="col s12 m3 l3 ingredients-panel">
+	<div class="col s12 m5 offset-m1 l5 offset-l1">
+        <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
+	</div>
+	<div class="col s12 m3 offset-m1 l3 offset-l1 ingredients-panel">
 		<h5>Ingredients</h5>
         {% for ingredient in recipe.ingredients %}
 		    <p>{{ ingredient }}</p>
         {% endfor %}   
 	</div>
-	<div class="col s12 m4 l4">
-        <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
-	</div>
-	<div class="col s12 m3 l3 newsletter-panel">
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col s12 m6 offset-m3 l6 offset-l3 newsletter-panel">
         <p><strong>
             Subscribe to our weekly FREE newsletter to stay up to date with all our latest recipes, plus  
-            receive loads of hints and tips from the experts for successful baking.
-            <div class="newsletter-text">
-                <h5><a href=""><i class="material-icons">create</i> Sign up now! <i class="material-icons">create</i></a></h5>
-        	</div>
+            receive loads of hints and tips from the experts for successful baking. You can personalise
+            the newsletter to receive the types of recipes that just interest you.
         </strong></p>
+        <div class="newsletter-text">
+            <h5><a href="">Sign up now!</a></h5>
+        </div>
 	</div>
 </div>
 
