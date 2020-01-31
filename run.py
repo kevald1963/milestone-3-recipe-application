@@ -35,7 +35,7 @@ def home():
 # Invoked primarily from the Nav bar.
 @app.route('/recipes')
 def recipes():
-    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False})))
+    return render_template("recipes.html", recipes=list(mongo.db.recipes.find({"archived": False}).sort("category", 1)))
 
 # Show the 'Add recipe' page. 
 # Invoked from 'Recipes' page.
@@ -178,7 +178,7 @@ def delete_recipe(_id):
 # Invoked primarily from the Nav bar.
 @app.route('/recipe_categories')
 def recipe_categories():
-    return render_template("recipe_categories.html", recipe_categories=list(mongo.db.recipe_categories.find()))
+    return render_template("recipe_categories.html", recipe_categories=list(mongo.db.recipe_categories.find().sort("category_name", 1)))
 
 # Show the 'Add recipe category' page. 
 # Invoked from 'Category' page.
