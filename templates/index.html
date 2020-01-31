@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container">
 <div class="row">
 	<div class="col s12 about-site">
         <p><strong>
@@ -13,133 +12,135 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col s12">
-		<p><strong><em>New to baking? Let us help you get started with our recommended value-for-money baking products:</em></strong></p>
-        <div class="sponsored-image-group">
-            <a href="https://www.bakerybits.co.uk/round-cooling-wire-or-rack-28cm-diameter.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/w/i/wire_with_buns.jpeg" alt="Stainless steel round wire cooling rack, 28cm diameter."></a>
-            <a href="https://www.lakeland.co.uk/6114/Chef%27s-Checks-Apron"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/6114_1?$325$" alt="Chef's checks apron"></a>
-            <a href="https://www.dovesfarm.co.uk/products/org-strong-wholemeal-flour-x-15kg"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF%20Flours/DF_StrongWholemealBreadFlour.jpg" alt="Doves Farm organic strong wholemeal bread flour 1.5kg."></a>
-            <a href="https://www.dovesfarm.co.uk/products/quick-yeast-1x125g"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF_Yeast.jpg" alt="Doves Farm quick yeast 125g."></a>
-            <a href="https://www.bakerybits.co.uk/chicago-metallic-professional-sheet-pans.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3462_7_7.jpg" alt="Chicago metallic professional sheet pans."></a>
-            <a href="https://noahsbox.com/products/baking-box?gclid=EAIaIQobChMIj-m5keeq5wIVTLTtCh23zQ0MEAQYASABEgLQ9_D_BwE#"><img class="sponsored-image" src="https://cdn.shopify.com/s/files/1/0068/1728/4155/products/Baking_Box_Noah_Advanced_900x.png?v=1574945600" alt="Baking box advanced starter kit."></a>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <p><strong>New to baking? Let us help you get started with our recommended value-for-money baking products:</strong></p>
+            <div class="sponsored-image-group">
+                <a href="https://www.bakerybits.co.uk/round-cooling-wire-or-rack-28cm-diameter.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/w/i/wire_with_buns.jpeg" alt="Stainless steel round wire cooling rack, 28cm diameter."></a>
+                <a href="https://www.lakeland.co.uk/6114/Chef%27s-Checks-Apron"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/6114_1?$325$" alt="Chef's checks apron"></a>
+                <a href="https://www.dovesfarm.co.uk/products/org-strong-wholemeal-flour-x-15kg"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF%20Flours/DF_StrongWholemealBreadFlour.jpg" alt="Doves Farm organic strong wholemeal bread flour 1.5kg."></a>
+                <a href="https://www.dovesfarm.co.uk/products/quick-yeast-1x125g"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF_Yeast.jpg" alt="Doves Farm quick yeast 125g."></a>
+                <a href="https://www.bakerybits.co.uk/chicago-metallic-professional-sheet-pans.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3462_7_7.jpg" alt="Chicago metallic professional sheet pans."></a>
+                <a href="https://noahsbox.com/products/baking-box?gclid=EAIaIQobChMIj-m5keeq5wIVTLTtCh23zQ0MEAQYASABEgLQ9_D_BwE#"><img class="sponsored-image" src="https://cdn.shopify.com/s/files/1/0068/1728/4155/products/Baking_Box_Noah_Advanced_900x.png?v=1574945600" alt="Baking box advanced starter kit."></a>
+            </div>
         </div>
-	</div>
-</div>
+    </div>
 
-<div class="row">
-	<div class="col s12">
-		<h3>Recipe of the Day: {{ recipe.title }}</h3>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12 m6 l6">
-		<p>{{ recipe.description }}</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12 m5 offset-m1 l5 offset-l1">
-        <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
-	</div>
-	<div class="col s12 m3 offset-m1 l3 offset-l1 ingredients-panel">
-		<h5>Ingredients</h5>
-        {% for ingredient in recipe.ingredients %}
-		    <p>{{ ingredient }}</p>
-        {% endfor %}   
-	</div>
-</div>
-
-<br>
-
-<div class="row">
-	<div class="col s12 m6 offset-m3 l6 offset-l3 newsletter-panel">
-        <p><strong>
-            Subscribe to our weekly FREE newsletter to stay up to date with all our latest recipes, plus  
-            receive loads of hints and tips from the experts for successful baking. You can personalise
-            the newsletter to receive the types of recipes that just interest you.
-        </strong></p>
-        <div class="newsletter-text">
-            <h5><a href="">Sign up now!</a></h5>
+    <div class="row">
+        <div class="col s12">
+            <h3>Recipe of the Day: {{ recipe.title }}</h3>
         </div>
-	</div>
-</div>
+    </div>
 
-<div class="row">
-    <div class="col s12">
-		<h5>Method</h5>
-        {% for method_item in recipe.method %}
-		    <p>{{ method_item }}</p>
-        {% endfor %}   
-	</div>
-</div>
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <p>{{ recipe.description }}</p>
+        </div>
+    </div>
 
-<div class="row margin-bottom-override">
-	<div class="col s12 equipment-panel">
-		<h5>Equipment</h5>
-        {% for equipment_item in recipe.equipment %}
-		    <p>{{ equipment_item }}</p>
-        {% endfor %}
-	</div>
-</div>
+    <div class="row">
+        <div class="col s12 m5 l5">
+            <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
+        </div>
+        <div class="col s12 m5 offset-m1 l5 offset-l1 ingredients-panel">
+            <h5>Ingredients</h5>
+            {% for ingredient in recipe.ingredients %}
+                <p>{{ ingredient }}</p>
+            {% endfor %}   
+        </div>
+    </div>
 
-<div class="row">
-	<div class="col s12 equipment-promotion">
-	   <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
+    <br>
+
+    <div class="row">
+        <div class="col s12 m6 offset-m3 l6 offset-l3 newsletter-panel">
+            <p><strong>
+                Subscribe to our weekly FREE newsletter to stay up to date with all our latest recipes, plus  
+                receive loads of hints and tips from the experts for successful baking. You can personalise
+                the newsletter to receive the types of recipes that just interest you.
+            </strong></p>
+            <div class="newsletter-text">
+                <h5><a href="">Sign up now!</a></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Method</h5>
+            {% for method_item in recipe.method %}
+                <p>{{ method_item }}</p>
+            {% endfor %}   
+        </div>
+    </div>
+
+    <div class="row margin-bottom-override">
+        <div class="col s12 equipment-panel">
+            <h5>Equipment</h5>
+            {% for equipment_item in recipe.equipment %}
+                <p>{{ equipment_item }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 equipment-promotion">
+        <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
+        </div>    
     </div>    
-</div>    
 
-<div class="row">
-	<div class="col s12">
-        <div class="sponsored-image-group">
-            <a href="https://www.bakerybits.co.uk/stainless-mixing-bowl-rolled-top-30cm-or-35cm-diameter.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt="Stainless mixing bBowl rolled top, 30cm or 35cm diameter."></a>
-            <a href="https://www.lakeland.co.uk/5751/Heavy-Duty-Double-Oven-Glove"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/5751_1?$325$" alt="Heavy duty thick double oven gloves."></a>
-            <a href="https://www.bakerybits.co.uk/traditional-farmhouse-3lb-or-1350g-double-coated-non-stick-tin.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/s/i/side_shot_1lb_tin__4.jpg" alt="Traditional 3lb or 1350g double-coated non-stick tin."></a>
-            <a href="https://www.lakeland.co.uk/14286/Lakeland-Digital-Kitchen-Weighing-Scale"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/14286_2?$325$" alt="Lakeland stainless steel digital kitchen scales."></a>
-            <a href="https://www.lakeland.co.uk/70261/Pyrex-0-5L-Measuring-Jug"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/70261_1?$325$" alt="Pyrex measuring jug 0.5 litre."></a>
-            <a href="https://www.lakeland.co.uk/32210/Mason-Cash-Cane-Mixing-Bowl-4L"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" alt="Mason cash cane mixing bowl 4 litres."></a>
+    <div class="row">
+        <div class="col s12">
+            <div class="sponsored-image-group">
+                <a href="https://www.bakerybits.co.uk/stainless-mixing-bowl-rolled-top-30cm-or-35cm-diameter.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt="Stainless mixing bBowl rolled top, 30cm or 35cm diameter."></a>
+                <a href="https://www.lakeland.co.uk/5751/Heavy-Duty-Double-Oven-Glove"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/5751_1?$325$" alt="Heavy duty thick double oven gloves."></a>
+                <a href="https://www.bakerybits.co.uk/traditional-farmhouse-3lb-or-1350g-double-coated-non-stick-tin.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/s/i/side_shot_1lb_tin__4.jpg" alt="Traditional 3lb or 1350g double-coated non-stick tin."></a>
+                <a href="https://www.lakeland.co.uk/14286/Lakeland-Digital-Kitchen-Weighing-Scale"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/14286_2?$325$" alt="Lakeland stainless steel digital kitchen scales."></a>
+                <a href="https://www.lakeland.co.uk/70261/Pyrex-0-5L-Measuring-Jug"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/70261_1?$325$" alt="Pyrex measuring jug 0.5 litre."></a>
+                <a href="https://www.lakeland.co.uk/32210/Mason-Cash-Cane-Mixing-Bowl-4L"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32210_1?$325$" alt="Mason cash cane mixing bowl 4 litres."></a>
+            </div>
         </div>
-	</div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Temperature</h5>
+            <p>
+                {{ recipe.temperature.celsius }}˚C,  
+                Fan {{ recipe.temperature.celsius_fan }}˚C, 
+                {{ recipe.temperature.fahrenheit }}˚F, 
+                Gas Mark {{ recipe.temperature.gas_mark }}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Cooking time</h5>
+            <p>{{ recipe.cooking_time }} minutes</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <p><strong><em>Recipe posted by:</strong> {{ recipe.posted_by }} on {{ recipe.date_posted }}</em></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Reviews</h5>
+            {% for review in recipe.reviews %}
+                {% if review.review_text is not defined %}
+                    <p><em>No reviews for this recipe yet. Would you like to be the first to review it?</em></p>
+                {% else %}
+                    <p>{{ review.review_text }}</p>
+                    <p><strong><em>Review posted by:</strong> {{ review.reviewed_by }} on {{ review.review_date }}</em></p>
+                {% endif %}    
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
-<div class="row">
-	<div class="col s12">
-		<h5>Temperature</h5>
-		<p>
-            {{ recipe.temperature.celsius }}˚C,  
-            Fan {{ recipe.temperature.celsius_fan }}˚C, 
-            {{ recipe.temperature.fahrenheit }}˚F, 
-            Gas Mark {{ recipe.temperature.gas_mark }}
-        </p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12">
-    	<h5>Cooking time</h5>
-		<p>{{ recipe.cooking_time }} minutes</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12">
-    	<p><strong><em>Recipe posted by:</strong> {{ recipe.posted_by }} on {{ recipe.date_posted }}</em></p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12">
-		<h5>Reviews</h5>
-        {% for review in recipe.reviews %}
-            {% if review.review_text is not defined %}
-                <p><em>No reviews for this recipe yet. Would you like to be the first to review it?</em></p>
-            {% else %}
-		        <p>{{ review.review_text }}</p>
-		        <p><strong><em>Review posted by:</strong> {{ review.reviewed_by }} on {{ review.review_date }}</em></p>
-            {% endif %}    
-		{% endfor %}
-	</div>
-</div>
-</div>
 {% endblock %}

@@ -6,8 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 
 from utils.general import test_checker, string_to_boolean, roundup_nearest_ten, roundup_nearest_one
-from utils.temperature_conversions import compute_temperature_settings, create_temperature_object, 
-     convert_from_celsius, convert_from_celsius_fan, convert_from_fahrenheit, convert_from_gas_mark
+from utils.temperature_conversions import compute_temperature_settings, create_temperature_object, convert_from_celsius, convert_from_celsius_fan, convert_from_fahrenheit, convert_from_gas_mark
 
 app = Flask(__name__)
 
