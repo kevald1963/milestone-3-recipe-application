@@ -16,42 +16,71 @@ The app is aimed at users, from beginners to advanced, who want to make a variet
 
 ### User Stories
 
-Initially, the site will have two types of User: Basic and Admin. It would be desirable to create other types of users, e.g. Trusted User, but the facility to do this will not be included in this phase. However, a Users collection will be included in the database. User records already in this collection imply a login facility exists and such users are have already been created through a registration process.
-
+Initially, the site will have two types of User: Basic and Admin. It would be desirable to create other types of users, e.g. Trusted User, but the facility to do this will not be included in this phase. However, a Users collection will be included in the database. User records already in this collection imply a login facility exists and such users have already been created through a registration process.
 
 User permissions:
 
-- Basic Users: These will be assumed to have registered with the site and created login details. They will be able to post and update recipes and reviews.
+- Basic Users: These will be assumed to have registered with the site and created login details. They will be able to add and update recipes and reviews.
 
 - Admin Users: This is the site owner or his/her employees. They will have full control over the entire data content of the site, including creating, viewing, updating, archiving and deleting of any user data.
 
-BASIC USER and ADMIN USER owner stories to be catered for: 
+Note: Not all of the above permissions will be implemented in the first release via the website.
+
+THIS RELEASE:
+
+BASIC USER and ADMIN USER stories to be catered for:
 
 I want to
 
-- post my recipes
+- add my recipes
+
+- view all recipes
 
 - update my recipes
 
-- ask questions about recipes posted by others
+- hide my recipes
 
-- answer other user’s questions about my recipes
+- delete my recipes
 
-- review recipes posted by others
+- add new recipe categories
 
-- update my reviews
+- view all recipe categories
 
-Additional ADMIN USER owner stories to be catered for: 
+- update my recipe categories
+
+- delete my recipe categories
+
+FUTURE RELEASE:
+
+Additional BASIC USER stories to be catered for:
+
+I want to
+
+- unhide my hidden recipes
+
+- add a review to recipes added by others
+
+- have my recipes reviewed by others
+
+- view any reviews
+
+- update my reviews of other users' recipes
+
+- delete my reviews of other users' recipes
+
+Additional ADMIN USER owner stories to be catered for:
 
 I want to
 
 - update any recipe
 
-- archive any recipe
+- hide any recipe
 
-- restore any archived recipes
+- unhide any hidden recipe
 
 - delete any recipe
+
+- add any review
 
 - update any review
 
@@ -61,11 +90,9 @@ I want to
 
 - update any user
 
-- archive any user 
-
-- restore any archived user
-
 - delete any user (except Admin)
+
+- delete any recipe category
 
 ### Wireframes
 
@@ -86,6 +113,52 @@ The MongoDB document database will be used by this site for all data storage. Co
 
 ### Existing Features
 
+- Common navigation bar:
+ - Provides links to other pages within site. On narrow screens, links are collapsed into a 'hamburger' menu.
+
+Note: All pages display sponsored image links for baking ingredients, equipment, starting kits, etc.
+
+- Home page (index.html):
+  - Explains purpose of site.
+  - Displays a Recipe of the Day with a visually-appealing image.
+  - Invites users to subscribe to weekly newsletter.
+
+- Recipes page (recipes.html):
+  - Lists all the recipes, in Category order, on the database, allowing View, Update, Hide and Delete operations for each.
+  - Each recipe is displayed in a collapsible 'accordion' component and can be expanded to show summary details.
+
+- View Recipe page (view_recipe.html):
+  - Displays a single recipe, in read-only mode, showing all associated data such as Category, Description, Ingedients, Method, etc.
+  - Button provided to navigate back to Recipes page.
+
+- Edit Recipe page (edit_recipe.html):
+  - Displays a single recipe, in write mode, allowing user to amend any associated recipe data.
+  - Buttons provided to update changes or cancel without updating. Both navigate back to Recipes page.
+
+- Hide button (on recipes.html):
+  - Allows user to hide the recipe without deleting it. An information message is displayed explaining the recipe can shown again using the Archive page (not implemented in this release).
+  - The Recipes page is refreshed after the Hide button is clicked, so that the recipe disappears from the page.
+
+- Delete button (on recipes.html):
+  - Allows user to permanently delete the recipe.
+  - The Recipes page is refreshed after the Delete button is clicked, so that the recipe disappears from the page.
+
+- Recipe Categories page (recipe_categories.html):
+  - Lists all the recipe categories, in Category Name order, from the database, allowing Update and Delete operations for each.
+  - Button provided at bottom of page to navigate to Add Recipe Category page.
+  
+- Edit Recipe Category page (edit_recipe.html):
+  - Displays a single recipe category, in write mode, allowing user to amend it.
+  - Buttons provided to update changes or cancel without updating. Both navigate back to Recipes Categories page.
+
+- Add Recipe Categories page (recipe_categories.html):
+  - Displays a single field for user to enter new Category Name.
+  - Buttons provided to add new Category Name or cancel without inserting. Both navigate back to Recipe Categories page.
+
+- Delete button (on recipe_categories.html):
+  - Allows user to permanently delete the category.
+  - The Recipe Categories page is refreshed after the Delete button is clicked, so that the category disappears from the page.
+
 ### Features Left to Implement
 
 ## Technologies Used
@@ -102,17 +175,11 @@ The MongoDB document database will be used by this site for all data storage. Co
 - [Google Fonts](https://fonts.google.com/)
   - For 'Roboto' font style used on all pages.
 
-- [Font Awesome 5](https://fontawesome.com/icons?d=gallery)
-  - Used to create 'icon' characters for menus, video and audio links, social media, external links, etc.
-
 - [MongoDB](https://www.mongodb.com/)
   - A document database used to store all user data.
 
-- [JQuery](https://jquery.com)
-  - Used to simplify DOM manipulation.
-
-- [JavaScript](https://www.w3schools.com/js/js_versions.asp) snippets added to:
-  - clear modal forms after form is submitted
+- [JQuery](https://jquery.com) / [JavaScript](https://www.w3schools.com/js/js_versions.asp)
+  - Used to simplify DOM manipulation for numerical field validation, multi-line field creation / removal, etc.
 
 ## Testing
 

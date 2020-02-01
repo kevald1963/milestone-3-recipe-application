@@ -1,49 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row">
-	<div class="col s12">
-		<p>Looking for quality ingredients or baking equipment? Or something for the kids? Check out these!</p>
-        <div class="sponsored-image-group">
-            <a href="https://www.bakerybits.co.uk/round-cooling-wire-or-rack-28cm-diameter.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/w/i/wire_with_buns.jpeg" alt=""></a>
-            <a href="https://www.lakeland.co.uk/32331/Children%27s-Star-Apron"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32331_1?$325$" alt=""></a>
-            <a href="https://www.dovesfarm.co.uk/products/org-strong-wholemeal-flour-x-15kg"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF%20Flours/DF_StrongWholemealBreadFlour.jpg" alt=""></a>
-            <a href="https://www.dovesfarm.co.uk/products/quick-yeast-1x125g"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF_Yeast.jpg" alt=""></a>
-            <a href="https://www.bakerybits.co.uk/chicago-metallic-professional-sheet-pans.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3462_7_7.jpg" alt=""></a>
-            <a href="https://www.lakeland.co.uk/32250/Children%E2%80%99s-10pc-Baking-Gift-Set-with-Bowl%2C-Whisk-and-Spatula-"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32250_2?$325$" alt=""></a>
-            
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <p>Looking for quality ingredients or baking equipment? Or something for the kids? Check out these!</p>
+            <div class="sponsored-image-group">
+                <a href="https://www.bakerybits.co.uk/round-cooling-wire-or-rack-28cm-diameter.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/w/i/wire_with_buns.jpeg" alt=""></a>
+                <a href="https://www.lakeland.co.uk/32331/Children%27s-Star-Apron"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32331_1?$325$" alt=""></a>
+                <a href="https://www.dovesfarm.co.uk/products/org-strong-wholemeal-flour-x-15kg"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF%20Flours/DF_StrongWholemealBreadFlour.jpg" alt=""></a>
+                <a href="https://www.dovesfarm.co.uk/products/quick-yeast-1x125g"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF_Yeast.jpg" alt=""></a>
+                <a href="https://www.bakerybits.co.uk/chicago-metallic-professional-sheet-pans.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3462_7_7.jpg" alt=""></a>
+                <a href="https://www.lakeland.co.uk/32250/Children%E2%80%99s-10pc-Baking-Gift-Set-with-Bowl%2C-Whisk-and-Spatula-"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/32250_2?$325$" alt=""></a>
+            </div>
         </div>
-	</div>
-</div>
+    </div>
 
-<div class="row">
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for recipe in recipes %}
-        <li>
-            <div class="collapsible-header">
-               <div class="col s1">
-                    <i class="material-icons">expand_more</i>
+    <div class="row">
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for recipe in recipes %}
+            <li>
+                <div class="collapsible-header">
+                <div class="col s1">
+                        <i class="material-icons">expand_more</i>
+                    </div>
+                    <div class="col s4">
+                        <span>{{ recipe.category }} - <strong>{{ recipe.title }}</strong></span>
+                    </div>
+                    <div class="col s7">
+                        <!-- VIEW, EDIT, HIDE and DELETE buttons -->
+                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='view') }}" class="waves-effect waves-light btn btn_small">View</a>
+                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='edit') }}" class="waves-effect waves-light btn btn_small">Update</a>
+                        <a href="{{ url_for('archive_recipe', _id=recipe._id) }}" class="hide-recipe-button waves-effect waves-light btn btn_small">Hide</a>
+                        <a href="{{ url_for('delete_recipe', _id=recipe._id) }}" class="delete-recipe-button waves-effect waves-light btn btn_small red">Delete</a>
+                    </div>
                 </div>
-                <div class="col s4">
-                    <span>{{ recipe.category }} - <strong>{{ recipe.title }}</strong></span>
+                <div class="collapsible-body">
+                    <p>
+                    {{ recipe.description }}
+                    </p>
+                    <span>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</span>
                 </div>
-                <div class="col s7">
-                    <!-- VIEW, EDIT, HIDE and DELETE buttons -->
-                    <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='view') }}" class="waves-effect waves-light btn btn_small">View</a>
-                    <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='edit') }}" class="waves-effect waves-light btn btn_small">Update</a>
-                    <a href="{{ url_for('archive_recipe', _id=recipe._id) }}" class="hide-recipe-button waves-effect waves-light btn btn_small">Hide</a>
-                    <a href="{{ url_for('delete_recipe', _id=recipe._id) }}" class="delete-recipe-button waves-effect waves-light btn btn_small red">Delete</a>
-                </div>
-            </div>
-            <div class="collapsible-body">
-                <p>
-                   {{ recipe.description }}
-                </p>
-                <span>Posted by {{ recipe.posted_by }} on {{ recipe.date_posted.strftime('%d/%m/%Y') }} at {{ recipe.date_posted.strftime('%H:%M') }}.</span>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% endblock %}
