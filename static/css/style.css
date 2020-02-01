@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700');
 
+.row {
+    margin-bottom: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+h5 {
+    color: rebeccapurple;
+}
+
 .row.margin-bottom-override {
     margin-bottom: 0;
 }
@@ -44,24 +56,17 @@
     margin-top: 0px;
     height: auto;
     box-shadow: 0 0 4px 0px black;
-    background-color: #ee6e73;      /* Matches Materialize Navbar colour. */
-    color: white;
 }
 
 .equipment-panel {
-    background-color: #ee6e73;      /* Matches Materialize Navbar colour. */
-    color: white;
 }
 
 .equipment-promotion {
-    background-color:rebeccapurple;
-    color: whitesmoke;
 }
 
 .newsletter-panel {
     border-radius: 15px;    
-    margin: 10px;
-    margin-top: 0px;
+    margin-top: 20px;
     box-shadow: 0 0 4px 0px black;
     background-color:rebeccapurple;
     color: whitesmoke;
@@ -85,6 +90,7 @@
 .sponsored-image {
     width: 15%;
     height: auto;
+    margin-right: 10px;
     box-shadow: 0 0 4px 0px black;
 }
 

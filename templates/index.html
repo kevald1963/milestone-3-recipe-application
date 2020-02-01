@@ -29,12 +29,18 @@
 
     <div class="row">
         <div class="col s12">
-            <h3>Recipe of the Day: {{ recipe.title }}</h3>
+            <h3 class="centered">Recipe of the Day</h3>
         </div>
     </div>
 
     <div class="row">
-        <div class="col s12 m6 l6">
+        <div class="col s12">
+            <h4>{{ recipe.title }}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12">
             <p>{{ recipe.description }}</p>
         </div>
     </div>
@@ -43,15 +49,13 @@
         <div class="col s12 m5 l5">
             <img class="popular-image" src="{{ recipe.image_source }}" alt="Traditional White Loaf">
         </div>
-        <div class="col s12 m5 offset-m1 l5 offset-l1 ingredients-panel">
+        <div class="col s12 m5 offset-m2 l5 offset-l2 ingredients-panel">
             <h5>Ingredients</h5>
             {% for ingredient in recipe.ingredients %}
                 <p>{{ ingredient }}</p>
             {% endfor %}   
         </div>
     </div>
-
-    <br>
 
     <div class="row">
         <div class="col s12 m6 offset-m3 l6 offset-l3 newsletter-panel">
@@ -75,7 +79,7 @@
         </div>
     </div>
 
-    <div class="row margin-bottom-override">
+    <div class="row">
         <div class="col s12 equipment-panel">
             <h5>Equipment</h5>
             {% for equipment_item in recipe.equipment %}
@@ -86,7 +90,7 @@
 
     <div class="row">
         <div class="col s12 equipment-promotion">
-        <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
+            <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
         </div>    
     </div>    
 
