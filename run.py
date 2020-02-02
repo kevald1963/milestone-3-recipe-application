@@ -192,8 +192,7 @@ def delete_recipe(_id):
     """ Delete the recipe and return to the 'Recipes' page.
     Invoked from 'Recipes' page. """
 
-    result = mongo.db.recipes.delete_one({"_id:": ObjectId(_id)})
-    print("result = " + str(result))
+    mongo.db.recipes.delete_one({'_id': ObjectId(_id)})
 
     # Refresh recipes page now that recipe has been deleted, as it should no longer be displayed.
     return redirect(url_for('recipes'))
