@@ -1,4 +1,4 @@
-# Baking Hot! A website application for viewing and sharing baking recipes.
+# **Baking Hot! A website application for viewing and sharing baking recipes.**
 
 Site strapline: “Baking Hot! The No. 1 Spot For All Your Baking Recipes!”
 
@@ -16,9 +16,11 @@ The app is aimed at users, from beginners to advanced, who want to make a variet
 
 ### User Stories
 
+Note: This section has been re-edited as the project nears completion. The initial user stories to be catered for were too ambitious.
+
 Initially, the site will have two types of User: Basic and Admin. It would be desirable to create other types of users, e.g. Trusted User, but the facility to do this will not be included in this phase. However, a Users collection will be included in the database. User records already in this collection imply a login facility exists and such users have already been created through a registration process.
 
-User permissions:
+**User permissions:**
 
 - Basic Users: These will be assumed to have registered with the site and created login details. They will be able to add and update recipes and reviews.
 
@@ -26,7 +28,7 @@ User permissions:
 
 Note: Not all of the above permissions will be implemented in the first release via the website.
 
-THIS RELEASE:
+**THIS RELEASE:**
 
 BASIC USER and ADMIN USER stories to be catered for:
 
@@ -50,7 +52,7 @@ I want to
 
 - delete my recipe categories
 
-FUTURE RELEASE:
+**FUTURE RELEASES:**
 
 Additional BASIC USER stories to be catered for:
 
@@ -113,10 +115,10 @@ The MongoDB document database will be used by this site for all data storage. Co
 
 ### Existing Features
 
-- Common navigation bar:
- - Provides links to other pages within site. On narrow screens, links are collapsed into a 'hamburger' menu.
+**Note: All pages display sponsored image links for baking ingredients, equipment, starting kits, etc.**
 
-Note: All pages display sponsored image links for baking ingredients, equipment, starting kits, etc.
+- Common navigation bar:
+  - Provides links to other pages within site. On narrow screens, links are collapsed into a 'hamburger' menu.
 
 - Home page (index.html):
   - Explains purpose of site.
@@ -165,6 +167,24 @@ Note: All pages display sponsored image links for baking ingredients, equipment,
 
 ### Features Left to Implement
 
+Although I believe this project largely meets the project requirements, in reality it is only suitable as a prototype to 
+demonstrate to users how such a system may work. It is nonetheless a good basis from which to develop the application further. 
+Because the system allows the general public to create, read, update and delete data, it struck me that the real starting 
+point for a professional version of this project would be to detail the terms and conditions that relate to data created by 
+users and how it may be used, who owns it, ensuring quality of content, preventing abuse, trolling etc. These would then 
+inform the design decisions to be taken.
+
+The list of features left to implement could be endless, but my main priorities would be:
+
+- A registration and login process, so different security levels can be applied to each user, in order to control their CRUD operations.
+- A facility to allow recipe reviews with appropriate CRUD operations.
+- A facility to allow users to upload their own images for recipes and personal profiles.
+- A facility for Admin users to vet users' photos for suitability and appropriateness.
+- A means of randomising the chosen Recipe of the Day on an automatic, scheduled basis.
+- A means of creating content for an email newsletter that allows easy selection from the recipe data held on the database.
+- A sponsored links database collection storing links for web pages and associated images, along with appropriate CRUD operations.
+- A means of randomising the display of the sponsored link images, across all pages, when a page is refreshed.
+
 ## Technologies Used
 
 - [HTML5](https://www.w3.org/TR/html52/) 
@@ -185,40 +205,43 @@ Note: All pages display sponsored image links for baking ingredients, equipment,
 - [JQuery](https://jquery.com) / [JavaScript](https://www.w3schools.com/js/js_versions.asp)
   - Used to simplify DOM manipulation for numerical field validation, multi-line field creation / removal, etc.
 
-- [Python]
+- [Python](https://www.python.org/)
+  - Server side programming language to interface between database and HTML pages.
 
-- [Flask]
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+  - To allow webpage redirection and rendering.
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+Testing has been achieved through a mix of automatic and manual tests.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+The manual testplan is stored in the [_Project Documentation](https://github.com/kevald1963/milestone-3-recipe-application/tree/master/_Project%20Documentation) folder in GitHub.
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+- [Testplan - Baking Hot.xlsx](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Database%20collections%20-%20Baking%20Hot.xlsx)
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+- **In Heroku:**
+   - Create new app `bakinghot`
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
-
-In addition, if it is not obvious, you should also describe how to run your code locally.
+- **On the terminal command line:**
+   - Install Heroku on gitpod: `npm install -g heroku`.
+   - Login to Heroku: `heroku login -i`. Enter username and password when prompted.
+   - Initialise git repository: `git init`.
+   - Link GitHub repository to app created in Heroku: `git remote add heroku https://bakinghot.herokuapp.com`.
+   - Create requirements file: `pip3 freeze --local > requirements.txt`.
+   - Create Procfile with main python file: `echo web: python run.py > procfile`.
+   - Set scale to a single dyno instance: `ps:scale web=1`.
+   - Check git status to ensure files created/updated: `git status`.
+   - Add the files: `git add .`.
+   - Commit the files: `git commit -m "Deploy to Heroku."`.
+   - Pushes project to Heroku: `git push -u heroku master`.
+ 
+- **In Heroku:**
+   - In Project Settings for application, set Config Vars:
+     IP: `0.0.0.0`
+     PORT: `5000`
+     MONGO_URI_BAKING_HOT: `mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority`
 
 ## Credits
 
