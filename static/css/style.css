@@ -12,6 +12,13 @@ h5 {
     color: rebeccapurple;
 }
 
+.welcome-message {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: whitesmoke;
+}
+
 .row.margin-bottom-override {
     margin-bottom: 0;
 }

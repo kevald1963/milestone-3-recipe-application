@@ -46,38 +46,47 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
-    recipes = mongo.db.recipes
-    """ Insert the recipe and return to the 'Recipes' page.
-    Invoked from 'Add recipe' page. """
-    
-    # Multi-line input elements need converted to a list before saving to MongoDB.
-    ingredients = request.form.getlist("ingredients[]")
-    method = request.form.getlist("method[]")
-    equipment = request.form.getlist("equipment[]")
-    
-    temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
-    temperature_type = request.form.get("temperature_type")
-    
-    # Call temperature conversion functions to populate the temperature object.
-    temperature_object = compute_temperature_settings(temperature_value, temperature_type)
 
-    data = request.form.to_dict() 
-    recipes.insert_one(
-        {
-            "category": data["category_name"],
-            "title": data["title"],
-            "description": data["description"],
-            "ingredients": ingredients,
-            "method": method,
-            "equipment": equipment,
-            "temperature": temperature_object,
-            "cooking_time": data["cooking_time"],
-            "posted_by": data["username"],
-            "date_posted": datetime.utcnow(),
-            "popular_recipe": False,
-            "archived": False
-        }
-    )    
+    # Only save form data to database if Add Recipe button actioned.
+    if "save" in request.form:
+
+        recipes = mongo.db.recipes
+        """ Insert the recipe and return to the 'Recipes' page.
+        Invoked from 'Add recipe' page. """
+        
+        # Multi-line input elements need converted to a list before saving to MongoDB.
+        ingredients = request.form.getlist("ingredients[]")
+        method = request.form.getlist("method[]")
+        equipment = request.form.getlist("equipment[]")
+        
+        temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
+        temperature_type = request.form.get("temperature_type")
+        
+        # Call temperature conversion functions to populate the temperature object.
+        temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+
+        data = request.form.to_dict() 
+        recipes.insert_one(
+            {
+                "category": data["category_name"],
+                "title": data["title"],
+                "description": data["description"],
+                "ingredients": ingredients,
+                "method": method,
+                "equipment": equipment,
+                "temperature": temperature_object,
+                "cooking_time": data["cooking_time"],
+                "posted_by": data["username"],
+                "date_posted": datetime.utcnow(),
+                "popular_recipe": False,
+                "archived": False
+            }
+        )    
+
+    # Cancel button actioned so nothing to save.
+    elif "no-save" in request.form:
+        pass
+    
     return redirect(url_for('recipes'))
 
 @app.route('/view_or_edit_recipe/<_id>/<mode>')
@@ -123,35 +132,43 @@ def view_or_edit_recipe(_id, mode):
 def update_recipe(_id):
     """ Update the recipe and return to the 'Recipes' page.
     # Invoked from 'Edit recipe' page."""
-    recipes = mongo.db.recipes
 
-    # Multi-line input elements need converted to a list before saving to MongoDB.
-    ingredients = request.form.getlist("ingredients[]")
-    method = request.form.getlist("method[]")
-    equipment = request.form.getlist("equipment[]")
+    # Only save form data to database if Update Recipe button actioned.
+    if "save" in request.form:
+        recipes = mongo.db.recipes
 
-    temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
-    temperature_type = request.form.get("temperature_type")
- 
-    # Call temperature conversion functions to populate the temperature object before update.
-    temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+        # Multi-line input elements need converted to a list before saving to MongoDB.
+        ingredients = request.form.getlist("ingredients[]")
+        method = request.form.getlist("method[]")
+        equipment = request.form.getlist("equipment[]")
+
+        temperature_value = roundup_nearest_one(float(request.form.get("temperature_value")))
+        temperature_type = request.form.get("temperature_type")
     
-    recipes.replace_one({"_id": ObjectId(_id)},
-    {
-        "category": request.form.get("category_name"),
-        "title": request.form.get("title"),
-        "description": request.form.get("description"),
-        "ingredients": ingredients,
-        "method": method,
-        "equipment": equipment,
-        "temperature": temperature_object,
-        "cooking_time": request.form.get("cooking_time"),
-        "posted_by": request.form.get("posted_by"),
-        "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S.%f'),
-        "date_last_updated": datetime.utcnow(),
-        "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
-        "archived": string_to_boolean(request.form.get("archived"))
-    })
+        # Call temperature conversion functions to populate the temperature object before update.
+        temperature_object = compute_temperature_settings(temperature_value, temperature_type)
+        
+        recipes.replace_one({"_id": ObjectId(_id)},
+        {
+            "category": request.form.get("category_name"),
+            "title": request.form.get("title"),
+            "description": request.form.get("description"),
+            "ingredients": ingredients,
+            "method": method,
+            "equipment": equipment,
+            "temperature": temperature_object,
+            "cooking_time": request.form.get("cooking_time"),
+            "posted_by": request.form.get("posted_by"),
+            "date_posted": datetime.strptime(request.form.get("date_posted"), '%Y-%m-%d %H:%M:%S.%f'),
+            "date_last_updated": datetime.utcnow(),
+            "popular_recipe": string_to_boolean(request.form.get("popular_recipe")),
+            "archived": string_to_boolean(request.form.get("archived"))
+        })
+    
+    # Cancel button actioned so nothing to save.
+    elif "no-save" in request.form:
+        pass
+    
     return redirect(url_for('recipes'))
 
 @app.route('/archive_recipe/<_id>')
@@ -202,9 +219,16 @@ def insert_recipe_category():
     """ Insert the recipe category and return to the 'Recipe categories' page.
     Invoked from 'Add recipe category' page. """
     
-    recipe_categories = mongo.db.recipe_categories
-    recipe_category = {"category_name": request.form.get('category_name')}
-    recipe_categories.insert_one(recipe_category)
+    # Only save form data to database if Add Category button actioned.
+    if "save" in request.form:
+        recipe_categories = mongo.db.recipe_categories
+        recipe_category = {"category_name": request.form.get('category_name')}
+        recipe_categories.insert_one(recipe_category)
+
+    # Cancel button actioned so nothing to save.
+    elif "no-save" in request.form:
+        pass
+
     return redirect(url_for('recipe_categories'))
 
 @app.route('/edit_recipe_category/<recipe_category_id>')
@@ -221,9 +245,17 @@ def update_recipe_category(recipe_category_id):
     """ Update the recipe category and return to the 'Recipe categories' page.
     Invoked from 'Edit recipe category' page. """
 
-    mongo.db.recipe_categories.update(
-        {'_id': ObjectId(recipe_category_id)},
-        {'category_name': request.form.get('category_name')})
+    # Only save form data to database if Update Category button actioned.
+    if "save" in request.form:
+        mongo.db.recipe_categories.update(
+            {'_id': ObjectId(recipe_category_id)},
+            {'category_name': request.form.get('category_name')}
+        )
+
+    # Cancel button actioned so nothing to save.
+    elif "no-save" in request.form:
+        pass
+
     return redirect(url_for('recipe_categories'))
 
 @app.route('/delete_recipe_category/<recipe_category_id>')

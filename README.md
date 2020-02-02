@@ -143,6 +143,10 @@ Note: All pages display sponsored image links for baking ingredients, equipment,
   - Allows user to permanently delete the recipe.
   - The Recipes page is refreshed after the Delete button is clicked, so that the recipe disappears from the page.
 
+- Add Recipe page (add_recipe.html):
+  - Displays a single recipe form, in write mode, allowing user to enter recipe data.
+  - Buttons provided to insert changes or cancel without inserting. Both navigate back to Recipes page.
+
 - Recipe Categories page (recipe_categories.html):
   - Lists all the recipe categories, in Category Name order, from the database, allowing Update and Delete operations for each.
   - Button provided at bottom of page to navigate to Add Recipe Category page.
@@ -180,6 +184,10 @@ Note: All pages display sponsored image links for baking ingredients, equipment,
 
 - [JQuery](https://jquery.com) / [JavaScript](https://www.w3schools.com/js/js_versions.asp)
   - Used to simplify DOM manipulation for numerical field validation, multi-line field creation / removal, etc.
+
+- [Python]
+
+- [Flask]
 
 ## Testing
 
