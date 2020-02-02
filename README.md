@@ -145,7 +145,7 @@ The MongoDB document database will be used by this site for all data storage. Co
   - Allows user to permanently delete the recipe.
   - The Recipes page is refreshed after the Delete button is clicked, so that the recipe disappears from the page.
 
-- Add Recipe page (add_recipe.html):
+- Add Recipe page (edit_recipe.html):
   - Displays a single recipe form, in write mode, allowing user to enter recipe data.
   - Buttons provided to insert changes or cancel without inserting. Both navigate back to Recipes page.
 
@@ -157,7 +157,7 @@ The MongoDB document database will be used by this site for all data storage. Co
   - Displays a single recipe category, in write mode, allowing user to amend it.
   - Buttons provided to update changes or cancel without updating. Both navigate back to Recipes Categories page.
 
-- Add Recipe Categories page (recipe_categories.html):
+- Add Recipe Categories page (add_recipe_categories.html):
   - Displays a single field for user to enter new Category Name.
   - Buttons provided to add new Category Name or cancel without inserting. Both navigate back to Recipe Categories page.
 
@@ -182,7 +182,7 @@ The list of features left to implement could be endless, but my main priorities 
 - A facility for Admin users to vet users' photos for suitability and appropriateness.
 - A means of randomising the chosen Recipe of the Day on an automatic, scheduled basis.
 - A means of creating content for an email newsletter that allows easy selection from the recipe data held on the database.
-- A sponsored links database collection storing links for web pages and associated images, along with appropriate CRUD operations.
+- A sponsored links database collection storing links for web pages and associated images, along with appropriate CRUD facilities for their management.
 - A means of randomising the display of the sponsored link images, across all pages, when a page is refreshed.
 
 ## Technologies Used
@@ -213,7 +213,17 @@ The list of features left to implement could be endless, but my main priorities 
 
 ## Testing
 
-Testing has been achieved through a mix of automatic and manual tests.
+Testing has been achieved through a mix of automated and manual tests.
+
+**Automated testing** 
+
+This was implemented using Python's unittest library. 
+
+The tests can be run as follow from a terminal CLI:`python3 -m unittest -v test_run`
+
+The `-v` flag enables verbose output. This gives a clearer picture of what has ran.
+
+**Manual testing** 
 
 The manual testplan is stored in the [_Project Documentation](https://github.com/kevald1963/milestone-3-recipe-application/tree/master/_Project%20Documentation) folder in GitHub.
 
@@ -222,7 +232,7 @@ The manual testplan is stored in the [_Project Documentation](https://github.com
 ## Deployment
 
 - **In Heroku:**
-   - Create new app `bakinghot`
+   - Create new app: `bakinghot`
 
 - **On the terminal command line:**
    - Install Heroku on gitpod: `npm install -g heroku`.
@@ -235,24 +245,24 @@ The manual testplan is stored in the [_Project Documentation](https://github.com
    - Check git status to ensure files created/updated: `git status`.
    - Add the files: `git add .`.
    - Commit the files: `git commit -m "Deploy to Heroku."`.
-   - Pushes project to Heroku: `git push -u heroku master`.
+   - Push project to Heroku: `git push -u heroku master`.
  
 - **In Heroku:**
    - In Project Settings for application, set Config Vars:
-     IP: `0.0.0.0`
-     PORT: `5000`
-     MONGO_URI_BAKING_HOT: `mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority`
+     - IP: `0.0.0.0`
+     - PORT: `5000`
+     - MONGO_URI_BAKING_HOT: `mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority`
 
 ## Credits
 
 - Maximum temperatures for domestic ovens [The Engineering Tool Box](https://www.engineeringtoolbox.com/gas-cookers-d_130.html)
+- Code snippet: Add and Remove Fields Dynamic and Simple with jQuery [Sanwebe](https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery) 
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- The text for many of the recipes was copied from [Doves Farm](https://www.dovesfarm.co.uk/), though some are also my own.
 
 ### Media
-- The photos used in this site were obtained from ...
+- The photo used on the Home page is obtained from [Doves Farm](https://www.dovesfarm.co.uk/)
 
 ### Acknowledgements
-
-- I received inspiration for this project from X
+- I want to thank my mentor Reuben Ferrante for his enthusiasm, thoroughness and expertise in helping me complete this project.
