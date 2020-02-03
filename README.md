@@ -235,33 +235,33 @@ The project is deployed on Heroku at (https://bakinghot.herokuapp.com)
 
 Deployment process:
 
-- **On Heroku website:**
-   - Create new app: 'bakinghot'
+**On Heroku website:**
+  - Create new app: 'bakinghot'
 
-- **On the terminal command line:**
-   - Install Heroku on gitpod: `npm install -g heroku`.
-   - Login to Heroku: `heroku login -i`. Enter username and password when prompted.
-   - Initialise git repository: `git init`.
-   - Link GitHub repository to app created in Heroku: `git remote add heroku https://bakinghot.herokuapp.com`.
-   - Create requirements file: `pip3 freeze --local > requirements.txt`.
-   - Create Procfile with main python file: `echo web: python run.py > procfile`.
-   - Set scale to a single dyno instance: `ps:scale web=1`.
-   - Check git status to ensure files created/updated: `git status`.
-   - Add the files: `git add .`.
-   - Commit the files: `git commit -m "Deploy to Heroku."`.
-   - Push project to Heroku: `git push -u heroku master`.
+**On the terminal command line:**
+  - Install Heroku on gitpod: `npm install -g heroku`.
+  - Login to Heroku: `heroku login -i`. Enter username and password when prompted.
+  - Initialise git repository: `git init`.
+  - Link GitHub repository to app created in Heroku: `git remote add heroku https://bakinghot.herokuapp.com`.
+  - Create requirements file: `pip3 freeze --local > requirements.txt`.
+  - Create Procfile with main python file: `echo web: python run.py > Procfile`.
+  - Set scale to a single dyno instance: `ps:scale web=1`.
+  - Check git status to ensure files created/updated: `git status`.
+  - Add the files: `git add .`.
+  - Commit the files: `git commit -m "Deploy to Heroku."`.
+  - Push project to Heroku: `git push -u heroku master`.
  
-- **On Heroku website:**
-   - In Project Settings for application, set Config Vars:
-     - IP: 0.0.0.0
-     - PORT: 5000
-     - MONGO_URI_BAKING_HOT: mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority
+**On Heroku website:**
+  - In Project Settings for application, set Config Vars:
+    - IP: 0.0.0.0
+    - PORT: 5000
+    - MONGO_URI_BAKING_HOT: mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority
 
 ## Credits
 
 - Maximum temperatures for domestic ovens, from [The Engineering Tool Box](https://www.engineeringtoolbox.com/gas-cookers-d_130.html).
-- Code snippet: Add and Remove Fields Dynamic and Simple with jQuery, from [Sanwebe](https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery). 
-- Code snippet: Execute different Python code depending on condition sent from HTML form, from a Stack Overflow answer from user 'poply' at [Stack Overflow questions](https://stackoverflow.com/questions/19794695/flask-python-buttons/19794878). 
+- Code snippet: Add and Remove Fields Dynamic and Simple with jQuery, from [Sanwebe.com](https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery). 
+- Code snippet: Execute different Python code depending on condition sent from HTML form, from a Stack Overflow answer by user 'poply' at [Stack Overflow questions](https://stackoverflow.com/questions/19794695/flask-python-buttons/19794878). 
   Adapted to allow Cancel button implementation on Insert / Update forms so data not unnecessarily written to database if no changes made.
 
 ### Content
