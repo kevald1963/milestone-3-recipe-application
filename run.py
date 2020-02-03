@@ -19,16 +19,6 @@ mongo = PyMongo(app)
 @app.route('/home')
 def home():
     """ Show the 'Home' page. """
-
-    # Can't get this to display a randomly selected record, yet the print shows it's 
-    # finding data. Why?
-    #random_recipe = mongo.db.recipes.aggregate([
-    #   {"$match": {"popular_recipe": True, "archived": False}},
-    #   {"$sample": {"size": 1}}
-    #])    
-    #print("random_recipe = " + str(list(random_recipe)))
-    #return render_template("index.html", recipe=random_recipe)
-
     return render_template("index.html", recipe=mongo.db.recipes.find_one({"popular_recipe": True, "archived": False}))
 
 @app.route('/recipes')
