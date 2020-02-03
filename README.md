@@ -213,17 +213,17 @@ The list of features left to implement could be endless, but my main priorities 
 
 ## Testing
 
-Testing has been achieved through a mix of automated and manual tests.
+Testing has been achieved through a mixture of automated and manual tests.
 
-**Automated testing** 
+**Automated tests** 
 
-This was implemented using Python's unittest library. 
+These test the Python methods and was implemented using Python's unittest library. 
 
-The tests can be run as follow from a terminal CLI:`python3 -m unittest -v test_run`
+The tests can be run as follow from a terminal CLI: `python3 -m unittest -v test_run`
 
-The `-v` flag enables verbose output. This gives a clearer picture of what has ran.
+The `-v` flag enables verbose output to give a clearer picture of what tests have ran.
 
-**Manual testing** 
+**Manual tests** 
 
 The manual testplan is stored in the [_Project Documentation](https://github.com/kevald1963/milestone-3-recipe-application/tree/master/_Project%20Documentation) folder in GitHub.
 
@@ -231,8 +231,12 @@ The manual testplan is stored in the [_Project Documentation](https://github.com
 
 ## Deployment
 
-- **In Heroku:**
-   - Create new app: `bakinghot`
+The project is deployed on Heroku at (https://bakinghot.herokuapp.com)
+
+Deployment process:
+
+- **On Heroku website:**
+   - Create new app: 'bakinghot'
 
 - **On the terminal command line:**
    - Install Heroku on gitpod: `npm install -g heroku`.
@@ -247,22 +251,24 @@ The manual testplan is stored in the [_Project Documentation](https://github.com
    - Commit the files: `git commit -m "Deploy to Heroku."`.
    - Push project to Heroku: `git push -u heroku master`.
  
-- **In Heroku:**
+- **On Heroku website:**
    - In Project Settings for application, set Config Vars:
-     - IP: `0.0.0.0`
-     - PORT: `5000`
-     - MONGO_URI_BAKING_HOT: `mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority`
+     - IP: 0.0.0.0
+     - PORT: 5000
+     - MONGO_URI_BAKING_HOT: mongodb+srv://(user):(password)@myfirstCluster-0wjbq.mongodb.net/baking_hot?retryWrites=true&w=majority
 
 ## Credits
 
-- Maximum temperatures for domestic ovens [The Engineering Tool Box](https://www.engineeringtoolbox.com/gas-cookers-d_130.html)
-- Code snippet: Add and Remove Fields Dynamic and Simple with jQuery [Sanwebe](https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery) 
+- Maximum temperatures for domestic ovens, from [The Engineering Tool Box](https://www.engineeringtoolbox.com/gas-cookers-d_130.html).
+- Code snippet: Add and Remove Fields Dynamic and Simple with jQuery, from [Sanwebe](https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery). 
+- Code snippet: Execute different Python code depending on condition sent from HTML form, from a Stack Overflow answer from user 'poply' at [Stack Overflow questions](https://stackoverflow.com/questions/19794695/flask-python-buttons/19794878). 
+  Adapted to allow Cancel button implementation on Insert / Update forms so data not unnecessarily written to database if no changes made.
 
 ### Content
-- The text for many of the recipes was copied from [Doves Farm](https://www.dovesfarm.co.uk/), though some are also my own.
+- The text for many of the recipes was copied from [Doves Farm](https://www.dovesfarm.co.uk/)
 
 ### Media
 - The photo used on the Home page is obtained from [Doves Farm](https://www.dovesfarm.co.uk/)
 
 ### Acknowledgements
-- I want to thank my mentor Reuben Ferrante for his enthusiasm, thoroughness and expertise in helping me complete this project.
+- I want to thank my mentor Reuben Ferrante for his enthusiasm, thoroughness and expertise which all helped me to complete this project.

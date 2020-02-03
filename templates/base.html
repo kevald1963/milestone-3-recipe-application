@@ -60,18 +60,23 @@
 
     <script> 
         // General numerical validation for temperature value field. These checks are made when adding or updating
-        // a recipe. Note that the cooking time field is not numerically validated because values such '40-45' (minutes) 
-        // are allowable. 
+        // a recipe. Note that the cooking time field is not numerically validated because values such as '40-45'
+        // (minutes) are allowable. 
         //
-        // When the submit button is clicked, if the temperature value is numeric then check that it is more than zero
-        // but not greater than a sensible maximum for its associated temperature type. Any failure will raise an
-        // alert and the form will not be updated. 
+        // Outline of validation checks:
+        // =============================
+        // When the submit button is actioned, if the temperature value is numeric then check that it is more than zero
+        // but not greater than the maximum for its associated temperature type. Any failure will raise an alert.
+        // On cancelling the alert, the screen cursor will move to the temperature and the form will not be submitted. 
         
         $('#recipe_form').submit(function(e) {
+            // Maximum temperatures for domestic ovens obtained from the The Engineering Tool Box at 
+            // https://www.engineeringtoolbox.com/gas-cookers-d_130.html
             var max_celsius = 250;
             var max_celsius_fan = 230;
             var max_fahrenheit = 475;
             var max_gas_mark = 9;
+
             var temperature_value = $('#temperature_value').val();
             var temperature_type = $('input[name="temperature_type"]:checked').val();
             
@@ -114,7 +119,9 @@
 
     
     <script>
-        // Allow adding and removing of input lines for multi-line recipe fields Ingredients, Method and Equipment.
+        // Code snippet adapted from "Add and Remove Fields Dynamic and Simple with jQuery" from Sanwebe at
+        // https://www.sanwebe.com/snippet/add-and-remove-fields-dynamic-and-simple-with-jquery
+        // Allows adding and removing of input lines for Ingredients, Method and Equipment multi-line fields.
         $(document).ready(function() {
             var max_fields                = 12;
             
