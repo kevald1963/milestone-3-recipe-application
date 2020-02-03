@@ -93,11 +93,26 @@ h5 {
     box-shadow: 0 0 4px 0px black;
 }
 
+.promotional-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sponsored-image-group {
+    text-align: center;
+}
+
 .sponsored-image {
+    display: inline-block;
     width: 15%;
     height: auto;
-    margin-right: 10px;
+    margin-right: 2px;
     box-shadow: 0 0 4px 0px black;
+}
+
+.temperature-view {
+    margin-top: 10px;
 }
 
 .temperature-input {
@@ -107,7 +122,7 @@ h5 {
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .ingredients-panel, .newsletter-panel, .equipment-panel {
+    .ingredients-panel, .newsletter-panel {
         border-radius: 0;
         margin: 0;
         box-shadow: none

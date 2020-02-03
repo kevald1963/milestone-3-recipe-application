@@ -17,8 +17,8 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <p><strong>New to baking? Let us help you get started with our recommended value-for-money baking products:</strong></p>
             <div class="sponsored-image-group">
+                <p class="promotional-text">New to baking? Let us help you get started with our recommended, value-for-money baking products:</p>
                 <a href="https://www.bakerybits.co.uk/round-cooling-wire-or-rack-28cm-diameter.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/w/i/wire_with_buns.jpeg" alt="Stainless steel round wire cooling rack, 28cm diameter."></a>
                 <a href="https://www.lakeland.co.uk/6114/Chef%27s-Checks-Apron"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/6114_1?$325$" alt="Chef's checks apron"></a>
                 <a href="https://www.dovesfarm.co.uk/products/org-strong-wholemeal-flour-x-15kg"><img class="sponsored-image" src="https://www.dovesfarm.co.uk/uploads/images/presets/product_page_full/product_images/DF%20Flours/DF_StrongWholemealBreadFlour.jpg" alt="Doves Farm organic strong wholemeal bread flour 1.5kg."></a>
@@ -82,7 +82,7 @@
     </div>
 
     <div class="row">
-        <div class="col s12 equipment-panel">
+        <div class="col s12">
             <h5>Equipment</h5>
             {% for equipment_item in recipe.equipment %}
                 <p>{{ equipment_item }}</p>
@@ -91,14 +91,9 @@
     </div>
 
     <div class="row">
-        <div class="col s12 equipment-promotion">
-            <p><strong>Need some baking equipment? Check out these cool tools!</strong></p>
-        </div>    
-    </div>    
-
-    <div class="row">
         <div class="col s12">
             <div class="sponsored-image-group">
+                <p class="promotional-text">Need some baking equipment? Check out these cool tools!</p>
                 <a href="https://www.bakerybits.co.uk/stainless-mixing-bowl-rolled-top-30cm-or-35cm-diameter.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/d/s/dsc_3096_5_4.jpg" alt="Stainless mixing bBowl rolled top, 30cm or 35cm diameter."></a>
                 <a href="https://www.lakeland.co.uk/5751/Heavy-Duty-Double-Oven-Glove"><img class="sponsored-image" src="https://lakelandcamel.scene7.com/is/image/LakelandCamel/5751_1?$325$" alt="Heavy duty thick double oven gloves."></a>
                 <a href="https://www.bakerybits.co.uk/traditional-farmhouse-3lb-or-1350g-double-coated-non-stick-tin.html.html"><img class="sponsored-image" src="https://www.bakerybits.co.uk/pub/media/catalog/product/cache/d75b6ae133e4e6a4f65baca6ce75f963/s/i/side_shot_1lb_tin__4.jpg" alt="Traditional 3lb or 1350g double-coated non-stick tin."></a>
@@ -110,7 +105,7 @@
     </div>
 
     <div class="row">
-        <div class="col s12">
+        <div class="col s12 temperature-view">
             <h5>Temperature</h5>
             <p>
                 {{ recipe.temperature.celsius }}˚C,  

@@ -181,7 +181,8 @@ The list of features left to implement could be endless, but my main priorities 
 - A facility to allow users to upload their own images for recipes and personal profiles.
 - A facility for Admin users to vet users' photos for suitability and appropriateness.
 - A means of randomising the chosen Recipe of the Day on an automatic, scheduled basis.
-- A means of creating content for an email newsletter that allows easy selection from the recipe data held on the database.
+- A sign-up page for the newsletter allowing users to personalise it to their needs e.g. types of recipes that interest them.
+- A means of creating content for an email newsletter by easy selection from the recipe data held on the database.
 - A sponsored links database collection storing links for web pages and associated images, along with appropriate CRUD facilities for their management.
 - A means of randomising the display of the sponsored link images, across all pages, when a page is refreshed.
 
@@ -203,7 +204,7 @@ The list of features left to implement could be endless, but my main priorities 
   - A document database used to store all user data.
 
 - [JQuery](https://jquery.com) / [JavaScript](https://www.w3schools.com/js/js_versions.asp)
-  - Used to simplify DOM manipulation for numerical field validation, multi-line field creation / removal, etc.
+  - Used to simplify DOM manipulation for numerical field validation, multi-line field creation and removal, etc.
 
 - [Python](https://www.python.org/)
   - Server side programming language to interface between database and HTML pages.
@@ -265,7 +266,7 @@ Deployment process:
   Adapted to allow Cancel button implementation on Insert / Update forms so data not unnecessarily written to database if no changes made.
 
 ### Content
-- The text for many of the recipes was copied from [Doves Farm](https://www.dovesfarm.co.uk/)
+- The text for many of the recipes was copied from [Doves Farm](https://www.dovesfarm.co.uk/).
 
 ### Media
 - The photo used on the Home page is obtained from [Doves Farm](https://www.dovesfarm.co.uk/)
