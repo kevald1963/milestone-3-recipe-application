@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">poll</i>
-                        <input id="category_name" name="category_name" type="text" class="validate" value="{{ recipe_category.category_name }}">
+                        <input id="category_name" name="category_name" type="text" class="validate" value="{{ recipe_category.category_name }}" required>
                         <label for="icon_prefix">Category name</label>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <i class="material-icons right">save</i>
                         </button>
                         <!-- CANCEL BUTTON -->
-                        <button class="btn waves-effect waves-light btn_large" type="submit" name="no-save">Cancel
+                        <button formnovalidate="formnovalidate" class="btn waves-effect waves-light btn_large" onclick="window.history.back(); return false;" type="submit" name="no-save">Cancel
                             <i class="material-icons right">cancel</i>
                         </button>
                     </div>
