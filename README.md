@@ -231,11 +231,15 @@ The manual testplan is stored in the [_Project Documentation](https://github.com
 - [Testplan - Baking Hot.xlsx](https://github.com/kevald1963/milestone-3-recipe-application/blob/master/_Project%20Documentation/Database%20collections%20-%20Baking%20Hot.xlsx)
 
 Please note that a number of bugs were found during manual testing. Those that could not be fixed because of time constraints or a lack of technical knowledge 
-have been detailed and flagged for next release.
+have been detailed and flagged for next release. The testplan consists of functional, presentational and responsivity tests.
 
 ## Deployment
 
-The project is deployed on Heroku at (https://bakinghot.herokuapp.com)
+The GitHub repository is at https://github.com/kevald1963/milestone-3-recipe-application.
+
+The project is deployed on Heroku at https://bakinghot.herokuapp.com.
+
+Both the GitHub repository & Heroku are in synch with each other.
 
 Deployment process:
 

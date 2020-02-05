@@ -39,33 +39,33 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                    <label data-error="Select an option">Recipe category</label>
+                    <label data-error="Select an option">Category</label>
                 </div>
             </div>
             
             <!-- RECIPE TITLE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Recipe title</label>
+                    <label for="icon_prefix">Title</label>
                     <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}" disabled/>
                 </div>
             </div>
 
             <!-- RECIPE DESCRIPTION -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Recipe description (optional)</label>
-                    <textarea id="description" name="description" class="materialize-textarea" disabled>{{ recipe.description }}</textarea>
+                    <label for="icon_prefix">Description</label>
+                    <textarea id="description" name="description" class="materialize-textarea" required="required" disabled>{{ recipe.description }}</textarea>
                 </div>
             </div>
 
             <!-- INGREDIENTS -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">shopping_basket</i>
-                    <label for="icon_telephone">Ingredients list:</label>
+                    <label for="icon_telephone">Ingredients:</label>
                     <br>
                 </div>
             </div>
@@ -79,9 +79,9 @@
 
             <!-- METHOD -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">list</i>
-                    <label for="icon_telephone">Method list:</label>
+                    <label for="icon_telephone">Method:</label>
                     <br>
                 </div>
             </div>
@@ -95,9 +95,9 @@
 
             <!-- EQUIPMENT -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">restaurant_menu</i>
-                    <label for="icon_telephone">Equipment list:</label>
+                    <label for="icon_telephone">Equipment:</label>
                     <br>
                 </div>
             </div>
@@ -130,9 +130,9 @@
 
             <!-- COOKING TIME -->
             <div class="row">
-                <div class="input-field col s8">
+                <div class="input-field col s12 l8">
                     <i class="material-icons prefix">access_time</i>
-                    <label for="icon_prefix">Cooking time (minutes)</label>
+                    <label for="icon_prefix">Cooking time (mins)</label>
                     <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required" value="{{ recipe.cooking_time }}" disabled/> 
                 </div>
             </div>

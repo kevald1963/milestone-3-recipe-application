@@ -29,10 +29,10 @@
                     </div>
                     <div class="col s7">
                         <!-- VIEW, EDIT, HIDE and DELETE buttons -->
-                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='view') }}" class="waves-effect waves-light btn btn_small">View</a>
-                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='edit') }}" class="waves-effect waves-light btn btn_small">Update</a>
-                        <a href="{{ url_for('archive_recipe', _id=recipe._id) }}" class="hide-recipe-button waves-effect waves-light btn btn_small">Hide</a>
-                        <a href="{{ url_for('delete_recipe', _id=recipe._id) }}" class="delete-recipe-button waves-effect waves-light btn btn_small red">Delete</a>
+                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='view') }}" class="list-button waves-effect waves-light btn btn_small">View</a>
+                        <a href="{{ url_for('view_or_edit_recipe', _id=recipe._id, mode='edit') }}" class="list-button waves-effect waves-light btn btn_small">Update</a>
+                        <a href="{{ url_for('archive_recipe', _id=recipe._id) }}" class="list-button waves-effect waves-light btn btn_small">Hide</a>
+                        <a href="{{ url_for('delete_recipe', _id=recipe._id) }}" class="list-button waves-effect waves-light btn btn_small red">Delete</a>
                     </div>
                 </div>
                 <div class="collapsible-body">

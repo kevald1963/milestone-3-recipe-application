@@ -28,7 +28,7 @@
         <form action="{{ url_for('update_recipe', _id=recipe._id) }}" method="POST" class="col s12" id="recipe_form">
             <!-- RECIPE CATEGORY SELECT -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">poll</i>
                     <select id="recipe_categories" name="category_name" required>
                         <option value="" disabled selected>Select recipe category</option>
@@ -40,33 +40,33 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-                    <label data-error="Select an option">Recipe category *</label>
+                    <label data-error="Select an option">Category *</label>
                 </div>
             </div>
             
             <!-- RECIPE TITLE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Recipe title *</label>
+                    <label for="icon_prefix">Title *</label>
                     <input id="title" name="title" type="text" class="validate" required="required" value="{{ recipe.title }}"/>
                 </div>
             </div>
 
             <!-- RECIPE DESCRIPTION -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Recipe description (optional)</label>
-                    <textarea id="description" name="description" class="materialize-textarea">{{ recipe.description }}</textarea>
+                    <label for="icon_prefix">Description *</label>
+                    <textarea id="description" name="description" class="materialize-textarea" required="required" >{{ recipe.description }}</textarea>
                 </div>
             </div>
 
             <!-- INGREDIENTS -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">shopping_basket</i>
-                    <label for="icon_telephone">Ingredients list *</label>
+                    <label for="icon_telephone">Ingredients *</label>
                     <br>
                 </div>
             </div>
@@ -84,9 +84,9 @@
 
             <!-- METHOD -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">list</i>
-                    <label for="icon_telephone">Method list *</label>
+                    <label for="icon_telephone">Method *</label>
                     <br>
                 </div>
             </div>
@@ -104,9 +104,9 @@
 
             <!-- EQUIPMENT -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">restaurant_menu</i>
-                    <label for="icon_telephone">Equipment list *</label>
+                    <label for="icon_telephone">Equipment *</label>
                     <br>
                 </div>
             </div>
@@ -124,7 +124,7 @@
 
             <!-- TEMPERATURE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">power_settings_new</i>
                     <label for="icon_telephone">Temperature *</label>
                     <br>
@@ -167,9 +167,9 @@
 
             <!-- COOKING TIME -->
             <div class="row">
-                <div class="input-field col s8">
+                <div class="input-field col s12 l8">
                     <i class="material-icons prefix">access_time</i>
-                    <label for="icon_prefix">Cooking time (minutes) *</label>
+                    <label for="icon_prefix">Cooking time (mins) *</label>
                     <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required" value="{{ recipe.cooking_time }}"/> 
                 </div>
             </div>
@@ -188,11 +188,11 @@
             <div class="row">
                 <div class="col s12">
                     <!-- UPDATE RECIPE BUTTON -->
-                    <button class="btn waves-effect waves-light" type="submit" name="save">Update recipe
+                    <button class="save-button btn waves-effect waves-light" type="submit" name="save">Update recipe
                         <i class="material-icons right">save</i>
                     </button>
                     <!-- CANCEL BUTTON -->
-                    <button formnovalidate="formnovalidate" class="btn waves-effect waves-light btn_large" onclick="window.history.back(); return false;" type="submit" name="no-save">Cancel
+                    <button formnovalidate="formnovalidate" class="cancel-button btn waves-effect waves-light btn_large" onclick="window.history.back(); return false;" type="submit" name="no-save">Cancel
                         <i class="material-icons right">cancel</i>
                     </button>
                 </div>

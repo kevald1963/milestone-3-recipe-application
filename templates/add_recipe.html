@@ -28,7 +28,7 @@
 
             <!-- RECIPE TYPE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">poll</i>
                     <select id="recipe_categories" name="category_name" required>
                         <option value="" disabled selected>Select recipe category</option>
@@ -36,33 +36,33 @@
                             <option id="category_name" value="{{ rec_category.category_name }}">{{ rec_category.category_name }}</option>
                         {% endfor %}
                     </select>
-                    <label data-error="Select an option">Recipe category *</label>
+                    <label data-error="Select an option">Category *</label>
                 </div>
             </div>
             
             <!-- RECIPE TITLE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Recipe title *</label>
+                    <label for="icon_prefix">Title *</label>
                     <input id="title" name="title" type="text" class="validate" required="required">
                 </div>
             </div>
 
             <!-- RECIPE DESCRIPTION -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">subject</i>
-                    <label for="icon_prefix">Recipe description (optional)</label>
-                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                    <label for="icon_prefix">Description *</label>
+                    <textarea id="description" name="description" class="materialize-textarea" required="required"></textarea>
                 </div>
             </div>
 
             <!-- INGREDIENTS -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">subject</i>
-                    <label for="icon_telephone">Ingredients list *</label>
+                    <label for="icon_telephone">Ingredients *</label>
                     <br>
                 </div>
             </div>
@@ -71,16 +71,16 @@
                     <input name="ingredients[]" type="text" class="field-long" required="required"/>
                 </div>
                 <div class="col s8 offset-s1">
-                    <button class="btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add</button>
-                    <button class="btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove</button>
+                    <button class="list-button btn waves-effect waves-light add_field_button_ingredients" name="add_field_button_ingredients" type="button">Add</button>
+                    <button class="list-button btn waves-effect waves-light remove_field_button_ingredients" name="remove_field_button_ingredients" type="button">Remove</button>
                 </div>        
             </div>        
 
             <!-- METHOD -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">subject</i>
-                    <label for="icon_telephone">Method list *</label>
+                    <label for="icon_telephone">Method *</label>
                     <br>
                 </div>
             </div>
@@ -89,16 +89,16 @@
                     <input name="method[]" type="text" class="field-long" required="required"/>
                 </div>
                 <div class="col s8 offset-s1">
-                    <button class="btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add</button>
-                    <button class="btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove</button>
+                    <button class="list-button btn waves-effect waves-light add_field_button_method" name="add_field_button_method" type="button">Add</button>
+                    <button class="list-button btn waves-effect waves-light remove_field_button_method" name="remove_field_button_method" type="button">Remove</button>
                 </div>        
             </div>        
 
             <!-- EQUIPMENT -->
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <i class="material-icons prefix">restaurant_menu</i>
-                    <label for="icon_telephone">Equipment list *</label>
+                    <label for="icon_telephone">Equipment *</label>
                     <br>
                 </div>
             </div>
@@ -107,27 +107,29 @@
                     <input name="equipment[]" type="text" class="field-long" required="required"/>
                 </div>
                 <div class="col s8 offset-s1">
-                    <button class="btn waves-effect waves-light add_field_button_equipment" name="add_field_button_equipment" type="button">Add</button>
-                    <button class="btn waves-effect waves-light remove_field_button_equipment" name="remove_field_button_equipment" type="button">Remove</button>
+                    <button class="list-button btn waves-effect waves-light add_field_button_equipment" name="add_field_button_equipment" type="button">Add</button>
+                    <button class="list-button btn waves-effect waves-light remove_field_button_equipment" name="remove_field_button_equipment" type="button">Remove</button>
                 </div>        
             </div>        
 
             <!-- TEMPERATURE -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">power_settings_new</i>
                     <label for="icon_telephone">Temperature *</label>
                     <br>
                 </div>
             </div>
             <div class="row">
-                <div class="col s11 offset-s1">
-                    <p>Please select just one oven temperature setting (other settings will be shown automatically when viewing recipe).</p>
+                <div class="col s12 l11 offset-l1">
                     <div class="row">
-                        <div class="col s1 temperature-input">
+                        <div class="col s10 l7 offset-s1 offset-l1 temperature-input">
+                            <p>Please select just one oven temperature setting (other settings will be shown automatically when viewing recipe).</p>
                             <input name="temperature_value" id="temperature_value" type="text" class="validate" required="required">
                         </div>        
-                        <div class="col s10">
+                    </div>        
+                    <div class="row">
+                        <div class="col s8 l10 offset-s1 offset-l1">
                             <!-- Note that 'name' attribute below must be identical for the radio buttons -->
                             <!-- to act as a group i.e. only one can be selected at a time.  -->
                             <input class="with-gap" name="temperature_type" id="celsius" value="celsius" type="radio" checked/>
@@ -145,16 +147,16 @@
 
             <!-- COOKING TIME -->
             <div class="row">
-                <div class="input-field col s8">
+                <div class="input-field col s12 l8">
                     <i class="material-icons prefix">assignment</i>
-                    <label for="icon_prefix">Cooking time (minutes) *</label>
+                    <label for="icon_prefix">Cooking time (mins) *</label>
                     <input id="cooking_time" name="cooking_time" type="text" class="validate" required="required">
                 </div>
             </div>
 
             <!-- USER NAME -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 l6">
                     <i class="material-icons prefix">people</i>
                     <select id="usernames" name="username" required>
                         <option value="" disabled selected>Select your user name</option>
@@ -169,11 +171,11 @@
             <div class="row">
                 <div class="col s12">
                     <!-- ADD RECIPE BUTTON -->
-                    <button class="btn waves-effect waves-light" type="submit" name="save">Add recipe
+                    <button class="save-button btn waves-effect waves-light" type="submit" name="save">Add recipe
                         <i class="material-icons right">save</i>
                     </button>
                     <!-- CANCEL BUTTON -->
-                    <button formnovalidate="formnovalidate" class="btn waves-effect waves-light btn_large" onclick="window.history.back(); return false;" type="submit" name="no-save">Cancel
+                    <button formnovalidate="formnovalidate" class="cancel-button btn waves-effect waves-light btn_large" onclick="window.history.back(); return false;" type="submit" name="no-save">Cancel
                         <i class="material-icons right">cancel</i>
                     </button>
                 </div>
